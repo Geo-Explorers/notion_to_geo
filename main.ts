@@ -33,7 +33,6 @@ async function main() {
 		relationTypeId: "...",
 	});
 
-
 	// Once you have the ops you can publish them to IPFS and your space.
 	const txHash = await publish({
 		spaceId,

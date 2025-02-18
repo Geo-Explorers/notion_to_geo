@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const PK = process.env.PK;
 
 if (!PK) {

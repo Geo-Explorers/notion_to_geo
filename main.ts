@@ -34,19 +34,16 @@ async function main() {
 		relationTypeId: "...",
 	});
 
-	// Publish your data to IPFS. Give the edit an appropriate name and pass it
-	// any ops you want to publish together.
-	const cid = await IPFS.publishEdit({
-		name: "YOUR EDIT NAME",
+
+	// Once you have the ops you can publish them to IPFS and your space.
+	const txHash = await publish({
+		spaceId,
 		author: "YOUR WALLET ACCOUNT ADDRESS",
+		editName: "YOUR EDIT NAME",
 		ops: [newTriple, newRelation],
 	});
 
-	// Write to the smart contract using the above calldata. This returns a transaction hash.
-	const txHash = await publish({
-		spaceId,
-		cid,
-	});
+	console.log("Your transaction hash is:", txHash);
 
 	// If you've done these steps correctly then your data should be published to your personal space!
 	// Check it out at the testnet explorer URL

@@ -1,4 +1,4 @@
-import { IPFS, type Op } from "@graphprotocol/grc-20";
+import { Ipfs, type Op } from "@graphprotocol/grc-20";
 import { wallet } from "./wallet";
 
 type PublishOptions = {
@@ -9,7 +9,7 @@ type PublishOptions = {
 };
 
 export async function publish(options: PublishOptions) {
-	const cid = await IPFS.publishEdit({
+	const cid = await Ipfs.publishEdit({
 		name: options.editName,
 		author: options.author,
 		ops: options.ops,

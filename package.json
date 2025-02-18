@@ -1,12 +1,13 @@
 {
-  "name": "clone-space",
-  "module": "main.ts",
-  "type": "module",
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@graphprotocol/grc-20": "^0.5.5",
-    "viem": "^2.23.2"
-  }
+	"name": "clone-space",
+	"module": "main.ts",
+	"type": "module",
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@graphprotocol/grc-20": "^0.5.5",
+		"viem": "^2.23.2"
+	}
 }

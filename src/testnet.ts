@@ -1,5 +1,5 @@
-import type {Chain} from "viem";
-import {config} from "./config";
+import type { Chain } from "viem";
+import { config } from "./config";
 
 export const TESTNET: Chain = {
 	id: 19411, // or 80451 for mainnet

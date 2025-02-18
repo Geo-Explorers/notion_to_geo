@@ -38,7 +38,7 @@ async function main() {
 		spaceId,
 		author: "YOUR WALLET ACCOUNT ADDRESS",
 		editName: "YOUR EDIT NAME",
-		ops: [newTriple, newRelation],
+		ops: [newTriple, newRelation], // An edit accepts an array of Ops
 	});
 
 	console.log("Your transaction hash is:", txHash);

@@ -8,13 +8,17 @@ This is a template for the GRC-20 hackathon. It contains basic scaffolding for b
 
 - Node.js
 - npm
-- An ethereum wallet with testnet ETH on the Geogenesis Testnet
+- An ethereum wallet with testnet ETH on the Geogenesis Testnet.
 
 ### Installation
 
 ```bash
 npm install
 ```
+
+### Configuration
+
+Create a `.env` file in the root of the project and add your wallet private key and RPC URL. See `.env.example` for an example.
 
 ## Workflow
 

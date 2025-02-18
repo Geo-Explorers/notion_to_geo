@@ -1,6 +1,5 @@
-import { IPFS, Relation, Triple } from "@graphprotocol/grc-20";
+import { Relation, Triple } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
-import { wallet } from "./src/wallet";
 import { publish } from "./src/publish";
 
 async function main() {

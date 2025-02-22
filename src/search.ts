@@ -1,3 +1,5 @@
+import { Graph } from "@graphprotocol/grc-20";
+
 type Result = {
 	id: string;
 	name: string | null;

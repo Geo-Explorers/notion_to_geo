@@ -44,6 +44,7 @@ const spaceName = 'Example Name';
 const spaceId = await deploySpace({
   spaceName,
   initialEditorAddress: editorAddress,
+  network: 'TESTNET', // Optionally specify the network, defaults to MAINNET
 })
 ```
 

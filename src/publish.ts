@@ -1,5 +1,14 @@
 import { Ipfs, type Op } from "@graphprotocol/grc-20";
 import { wallet } from "./wallet";
+import { getSmartAccountWalletClient } from '@graphprotocol/grc-20';
+
+// IMPORTANT: Be careful with your private key. Don't commit it to version control.
+// You can get your private key using https://www.geobrowser.io/export-wallet
+const privateKey = process.env.PK_SW;
+const smartAccountWalletClient = await getSmartAccountWalletClient({
+  privateKey,
+  // rpcUrl, // optional
+});
 
 type PublishOptions = {
 	spaceId: string;
@@ -8,7 +17,7 @@ type PublishOptions = {
 	ops: Op[];
 };
 
-export async function publish(options: PublishOptions) {
+export async function publish(options: PublishOptions, network: string) {
 	const cid = await Ipfs.publishEdit({
 		name: options.editName,
 		author: options.author,
@@ -22,15 +31,25 @@ export async function publish(options: PublishOptions) {
 		body: JSON.stringify({
 			cid: cid,
 			// Optionally specify TESTNET or MAINNET. Defaults to MAINNET
-			network: "TESTNET",
+			network: network,
 		}),
 	});
 
 	const { to, data } = await result.json();
 
-	return await wallet.sendTransaction({
-		to: to,
-		value: 0n,
-		data: data,
-	});
+	if (network == "TESTNET") {
+		return await wallet.sendTransaction({
+			to: to,
+			value: 0n,
+			data: data,
+		});
+	} else if (network == "MAINNET") {
+		return await smartAccountWalletClient.sendTransaction({
+			to: to,
+			value: 0n,
+			data: data,
+		});
+	} else {
+		console.error("ERROR: INCORRECT NETWORK SPECIFIED (CHOOSE EITHER TESTNET OR MAINNET")
+	}
 }

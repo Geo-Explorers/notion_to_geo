@@ -1,50 +1,61 @@
+import * as fs from "fs";
 import { Relation, Triple } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
+import { processSource } from "./process_source";
+import { processClaim } from "./process_claim";
+import { testnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, TESTNET_GEO_IDS } from './src/constants';
+import { processNewsStory } from "./process_news_story";
+
+const { Client } = require("@notionhq/client")
+
+
 
 async function main() {
-	// If you haven't deployed a personal space yet you can deploy one
-	// by running deploySpace. This will return the spaceId. Make sure
-	// you remember this.
-	//
-	// If you've already deployed a personal space and have the spaceId
-	// you can skip this step.
-	const spaceId = await deploySpace({
-		spaceName: "YOUR SPACE NAME",
-		initialEditorAddress: "YOUR WALLET ACCOUNT ADDRESS", // 0x...
-	});
-
-	console.log("Your spaceId is:", spaceId);
-
-	// Once you have a personal space you can write data to it. Generate
-	// ops for your data using Triple.make or Relation.make accordingly.
-	const newTriple = Triple.make({
-		attributeId: "...",
-		entityId: "...",
-		value: {
-			type: "TEXT",
-			value: "",
-		},
-	});
-
-	const newRelation = Relation.make({
-		fromId: "...",
-		toId: "...",
-		relationTypeId: "...",
-	});
-
 	// Once you have the ops you can publish them to IPFS and your space.
-	const txHash = await publish({
-		spaceId,
-		author: "YOUR WALLET ACCOUNT ADDRESS",
-		editName: "YOUR EDIT NAME",
-		ops: [newTriple, newRelation], // An edit accepts an array of Ops
+
+	const ops: Array<Op> = [];
+    let addOps;
+    let geoId: string;
+
+	// Initializing a client
+	const notion = new Client({
+		auth: process.env.NOTION_TOKEN,
 	});
 
-	console.log("Your transaction hash is:", txHash);
 
-	// If you've done these steps correctly then your data should be published to your personal space!
-	// Check it out at the testnet explorer URL
+	//WRITE SCRIPT TO GO THROUGH ALL NEWS STORIES WITH A SPECIFIC STATUS
+	//PROCESS News story
+
+	const notionId = "145273e214eb8054b591d896a6300b4c";
+	[addOps, geoId] = await processNewsStory(ops, notionId, notion);
+	ops.push(...addOps);
+	//console.log("Ops", addOps)
+	console.log("Geo ID", geoId)
+
+	console.log(ops.length)
+
+
+	if (ops.length > 0) {
+		let outputText;
+		// Convert operations to a readable JSON format
+		outputText = JSON.stringify(ops, null, 2);
+		// Write to a text file
+		fs.writeFileSync(`ops.txt`, outputText);
+
+		const txHash = await publish({
+			spaceId: TESTNET_GEO_IDS.spaceId,
+			author: testnetWalletAddress,
+			editName: "Upload story v1",
+			ops: ops, // An edit accepts an array of Ops
+		}, "TESTNET");
+
+		console.log("Your transaction hash is:", txHash);
+	}
 }
 
 main();
+
+//To dos
+// - Create authors, if needed?
+// - Handle searches if we find multiple results? Could provide more filters to limit the chance of multiple results

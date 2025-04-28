@@ -12,7 +12,7 @@ export async function deploySpace(options: DeploySpaceOptions) {
 		body: JSON.stringify({
 			initialEditorAddress: getChecksumAddress(options.initialEditorAddress),
 			spaceName: options.spaceName,
-			network: options.network ?? "MAINNET",
+			network: options.network ?? "TESTNET",
 		}),
 	});
 

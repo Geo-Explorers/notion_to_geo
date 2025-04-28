@@ -1,0 +1,3574 @@
+[
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "26cFwsB35qZQd7xSCPeffa",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo announces its return to the United States"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "HwSZR2u33DuE9USHUhaL3P",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "BSLiYcXrLvDR94r1oJArAW",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "T9dQizhTiqmYkTNf1uaj3u",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "index": "wyvJq6OA.C0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "XH7irvc1kCqV6x2hauN1nS",
+      "value": {
+        "type": "TEXT",
+        "value": "Summary"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "47KureGS2abVGovjb5Tiwk",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo announced its return to the United States market at a special business event"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "BBA1894NztMD9dWyhiwcsU",
+      "entity": "47KureGS2abVGovjb5Tiwk",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "HWkr2rLfikiSjZpjCZjFkf",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "47KureGS2abVGovjb5Tiwk",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6Lxo75bSALpEzebaqLdhgb",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "47KureGS2abVGovjb5Tiwk",
+      "toEntity": "QAdjgcq9nD7Gv98vn2vrDd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "3T95Pre5pkrcKkTL4tLuvx",
+      "value": {
+        "type": "TEXT",
+        "value": "Digital assets wealth platform, Nexo announced its return to the United States. This re-entry was revealed at a special business event that included keynote speeches from prominent figures such as Donald Trump Jr., Executive Vice President of The Trump Organization; Gila Gamliel, Israel’s Minister of Innovation, Science, and Technology; and Antoni Trenchev, Co-Founder of Nexo."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "GqvPaaGnv94B97emTKY1Dg",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3T95Pre5pkrcKkTL4tLuvx",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo Makes Strategic US Re-entry, Providing Tailored Digital Asset Services For Retail And Institutional Investors"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo, a prominent digital asset wealth management platform, has announced its strategic re-entry into the U.S. market, unveiling a comprehensive suite of services tailored for both retail and institutional investors."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "value": {
+        "type": "URL",
+        "value": "https://mpost.io/nexo-makes-strategic-us-re-entry-providing-tailored-digital-asset-services-for-retail-and-institutional-investors/?_nocache=1745844957513"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9av2mYY6H3z7yLZ4FHZHfS",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "ELq11JAZzCx8oa1uCStwjP",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QyTq9N5kmM4mnG4MJ3GgYA",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "ELq11JAZzCx8oa1uCStwjP",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QsSoS513hP9YwMKrdCQNLQ",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "toEntity": "ELq11JAZzCx8oa1uCStwjP",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "ELq11JAZzCx8oa1uCStwjP",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "ELq11JAZzCx8oa1uCStwjP",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"QwaKXRLzMMYLnqMvcdr4Gs\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3htryJSfrvzpeUkZjDuRwH",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "QsSoS513hP9YwMKrdCQNLQ",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "LwYRPDLSNPex2xYJF3d8eP",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "KSuAGwaC8t5ZfyoFTkwQ4a",
+      "toEntity": "Q1LaZhnzj8AtCzx8T1HRMf",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KSuAGwaC8t5ZfyoFTkwQ4a",
+      "attribute": "J6cw1v8xUHCFsEdPeuB1Uo",
+      "value": {
+        "type": "URL",
+        "value": "ipfs://bafkreiaqoz7ofo3immfemthollyia3o5nm4kxbte7hl3qllvrujzlyarwe"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KSuAGwaC8t5ZfyoFTkwQ4a",
+      "attribute": "GjaFuBBB8z63y9qr8dhaSP",
+      "value": {
+        "type": "NUMBER",
+        "value": "400"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KSuAGwaC8t5ZfyoFTkwQ4a",
+      "attribute": "Xb3useEUkWV1Y9zYYkq4xp",
+      "value": {
+        "type": "NUMBER",
+        "value": "400"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "EHiBWxyiJosLAgjbFQrhbH",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "toEntity": "KSuAGwaC8t5ZfyoFTkwQ4a",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "NFqxBQQAsiG7FDngo3UY5y",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "toEntity": "M5uDP7nCw3nvfQPUryn9gx",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Kvf9nBo4qJt1eUiNkgkeFr",
+      "type": "JzFpgguvcCaKhbQYPHsrNT",
+      "fromEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "toEntity": "TF7ySRfyV8hfX1vvWbHQpZ",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FiPtR8C1MfHXG3ghft2aPM",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "3T95Pre5pkrcKkTL4tLuvx",
+      "toEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "index": "wyvJq6OA.I0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Kw4Rgj5tfN3hv7h4BFWV5g",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "47KureGS2abVGovjb5Tiwk",
+      "toEntity": "3T95Pre5pkrcKkTL4tLuvx",
+      "index": "wyvJq6OA.G0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "49LWn6kKcc3iCQZpXhWGcW",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "47KureGS2abVGovjb5Tiwk",
+      "toEntity": "CPUXwDmJwjy4ewMvLAVtst",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "LCxAsE5RSKp1JDiELykHaw",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "47KureGS2abVGovjb5Tiwk",
+      "toEntity": "7WWfRVjheVwp5Bhe8EQGuG",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TTuRBQ4CpSxFg5zNDS9Cq5",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "47KureGS2abVGovjb5Tiwk",
+      "index": "wyvJq6OA.E0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "FcWSPThkgEn5CbPsJnHHHv",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo's comeback was announced at a special business event in Sofia, Bulgaria, that included keynote addresses by Donald Trump Jr., Executive Vice President of The Trump Organization; Gila Gamliel, Israel’s Minister of Innovation, Science, and Technology; and Antoni Trenchev, Co-Founder of Nexo"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "BAPRcKZCKjkNkjykpRHogj",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "FcWSPThkgEn5CbPsJnHHHv",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FodBzDTzWM1kat3aDcsXeM",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "FcWSPThkgEn5CbPsJnHHHv",
+      "toEntity": "3T95Pre5pkrcKkTL4tLuvx",
+      "index": "wyvJq6OA.aC0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "3bKMrbyK4c5W1Pwdbrppgq",
+      "value": {
+        "type": "TEXT",
+        "value": "The crypto lender announced its U.S. comeback at a private event attended by Donald Trump Jr., son of the President, among others."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Gi2urXoawPicE1yv5rssa1",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3bKMrbyK4c5W1Pwdbrppgq",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo to reenter US market after two-year regulatory exit and $45 million settlement"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo, a cryptocurrency lending platform, is planning to reenter the U.S. market after a two-year hiatus prompted by regulatory challenges."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "value": {
+        "type": "URL",
+        "value": "https://www.theblock.co/post/352127/nexo-to-reenter-us-market-after-two-year-regulatory-exit-and-45-million-settlement?utm_source=rss&utm_medium=rss"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "UDsvCjbrxhYP4vLSyWjWyZ",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "YLY7nH3Ns8Av7WdLccFSSp",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2zyRgv2CwdgpKbX4eQnpXu",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "YLY7nH3Ns8Av7WdLccFSSp",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TtQ4oCtD3sJFx1CZFa9aXK",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "toEntity": "YLY7nH3Ns8Av7WdLccFSSp",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "YLY7nH3Ns8Av7WdLccFSSp",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "YLY7nH3Ns8Av7WdLccFSSp",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"Kmq1o4Vf4Azo9tkYp5eQzN\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "B2ptcftHqqjsg4S2igw6QV",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "TtQ4oCtD3sJFx1CZFa9aXK",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5UH5hxvBWUbVSZCACvBJAE",
+      "type": "Lc4JrkpMUPhNstqs7mvnc5",
+      "fromEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "toEntity": "XQ1Ux12aG3FG8KhJShSsYc",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "HrmsE5Qa1E7qnfBQmdBLTi",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "toEntity": "Xyv4PQvTFPfsN2NdC8mVVU",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "GCF2tG2Pgtq56izgrxD451",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "toEntity": "M5uDP7nCw3nvfQPUryn9gx",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "76Q9ecJYGvUtLAq4edB5e4",
+      "type": "JzFpgguvcCaKhbQYPHsrNT",
+      "fromEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "toEntity": "BcepYRuCHZubUswipqvk7P",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4KmXEGNGW4BQEHJjPs2Miu",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "3bKMrbyK4c5W1Pwdbrppgq",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.aE0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "EY6KiuMtPzw87NkkwG1N3Z",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "FcWSPThkgEn5CbPsJnHHHv",
+      "toEntity": "3bKMrbyK4c5W1Pwdbrppgq",
+      "index": "wyvJq6OA.aC0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TNscJ4RfSSbRi9MidjFGkS",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "FcWSPThkgEn5CbPsJnHHHv",
+      "index": "wyvJq6OA.E0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "7nqz2DShJ3ApuNG7RaN8Bt",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo previously exited the U.S. market in late 2022 after regulatory friction and multiple enforcement actions by federal and state authorities"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4hVcEANo8JTVSVeobbF5mG",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "7nqz2DShJ3ApuNG7RaN8Bt",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "QjCiUs84SPRkXV7hkTDCCy",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo withdrew from the U.S. in late 2022 after what it called a \"dead end\" in negotiations with state and federal regulators over its Earn Interest Product, as well as the market turmoil following the collapse of crypto exchange FTX and a wider crackdown on crypto lenders, CoinDesk reported at the time."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "RjVvXZabWYfLpnqB8bwbsP",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "QjCiUs84SPRkXV7hkTDCCy",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo to Return to U.S. After 2022 Exit, Citing Renewed Crypto Optimism Under Trump"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo is reentering the U.S. market after exiting in 2022 due to regulatory challenges. The company cited a renewed sense of optimism for crypto innovation under the Trump administration as a key reason for its return. Co-founder Antoni Trenchev praised the current U.S. environment as more supportive of innovation."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "value": {
+        "type": "URL",
+        "value": "https://www.coindesk.com/policy/2025/04/28/nexo-to-return-to-us-after-2022-exit-citing-renewed-crypto-optimism-under-trump"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "NKxRaaXYK5Qf5tXfcQysju",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "28SNyc6pFo1fnJ5mDmcchs",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7f3UbrZ55YdYWMgiGHx949",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "28SNyc6pFo1fnJ5mDmcchs",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SkRPbu1MoedMv3PHLtkoBU",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "toEntity": "28SNyc6pFo1fnJ5mDmcchs",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "28SNyc6pFo1fnJ5mDmcchs",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "28SNyc6pFo1fnJ5mDmcchs",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"RbmE4KB6dAG6PP5vZjaVrx\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "YZqpaPDnY1mTMjaCB3VCnx",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "SkRPbu1MoedMv3PHLtkoBU",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7zL22TTDWUUbrMR8nYpE2v",
+      "type": "Lc4JrkpMUPhNstqs7mvnc5",
+      "fromEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "toEntity": "8C8ea1CTQ79RU2wUBdQLS1",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "NcTSG9eWKrpawVY84CUR6c",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "toEntity": "BqYhYy3fxjAQJb551VDNo2",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "E7EVHP8pZS4NJAnSbgAD2w",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "toEntity": "M5uDP7nCw3nvfQPUryn9gx",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "VyX3wDiqLdCw6T2n8ZexSg",
+      "type": "JzFpgguvcCaKhbQYPHsrNT",
+      "fromEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "toEntity": "CRKVLekksBx4Mth1FwfB7Y",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FteL7PeREKMshZXk2XGVGL",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "QjCiUs84SPRkXV7hkTDCCy",
+      "toEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "index": "wyvJq6OA.aa0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Ckj684RxN21YNpE8VDJvjf",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "7nqz2DShJ3ApuNG7RaN8Bt",
+      "toEntity": "QjCiUs84SPRkXV7hkTDCCy",
+      "index": "wyvJq6OA.aY0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "VGnkV2jiVpFd6GG2mpbFzs",
+      "value": {
+        "type": "TEXT",
+        "value": "Crypto lender Nexo is reentering the U.S. market, nearly two years after halting services for American clients due to regulatory scrutiny of its Earn Interest Product."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "RvMELCrNfN1dTd6afwYVbq",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "VGnkV2jiVpFd6GG2mpbFzs",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FfZVaRZEtX2qjeGgUnLLya",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "VGnkV2jiVpFd6GG2mpbFzs",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.ao0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "AxRdh4KnAhS4fPXTuAg23i",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "7nqz2DShJ3ApuNG7RaN8Bt",
+      "toEntity": "VGnkV2jiVpFd6GG2mpbFzs",
+      "index": "wyvJq6OA.aY0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ERRvEVFdAC9wkeGFbn2ogF",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "7nqz2DShJ3ApuNG7RaN8Bt",
+      "index": "wyvJq6OA.E0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "UoDXy9wjr234bzjZY7ZAUf",
+      "value": {
+        "type": "TEXT",
+        "value": "U.S. investigations by the SEC, CFPB, and several state regulators culminated in a $45 million settlement with Nexo in January 2023, resolving allegations that the company failed to register its Earn Interest Product as a securities offering"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "CdtW5XVkxFvEYdbfSdX9hn",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "UoDXy9wjr234bzjZY7ZAUf",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "TsH58UUvC58iLaCdzLaMxA",
+      "value": {
+        "type": "TEXT",
+        "value": "Agencies like the Consumer Financial Protection Bureau (CFPB) and the Securities and Exchange Commission (SEC) accused Nexo of failing to register the offer and sale of its Earn product to retail clients. The company officially ceased U.S. operations in December 2022 and later agreed to a $45 million settlement in January 2023 without admitting wrongdoing."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "AC5vCt1SA6azTa6HSpMVPD",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "TsH58UUvC58iLaCdzLaMxA",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "VTNMDY2Ft6tSgu8eGEvB9R",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "TsH58UUvC58iLaCdzLaMxA",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.bE0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DZjG9hr6VK8MxnHsunLGuh",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "UoDXy9wjr234bzjZY7ZAUf",
+      "toEntity": "TsH58UUvC58iLaCdzLaMxA",
+      "index": "wyvJq6OA.bC0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7JMAV9UkecVkzRUcodENQg",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "UoDXy9wjr234bzjZY7ZAUf",
+      "index": "wyvJq6OA.E0J"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "G3Q4pbBxMAs2PkFZBD4Y7x",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo’s reentry into the U.S. market signals renewed confidence in the American regulatory environment for crypto innovation"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QcJwbFKfmzyNHdcU67oFRq",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "G3Q4pbBxMAs2PkFZBD4Y7x",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "L7BYEjpFWZSa88u7FYaUwy",
+      "value": {
+        "type": "TEXT",
+        "value": "\"Thanks to the vision and leadership of President Donald J. Trump, his administration, and his family, the United States is once again a place where innovation is championed, not stifled. A place where pioneers are celebrated,\" Trenchev said, according to a press release."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SEQvs7dXG6iBHR63pRnB2r",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "L7BYEjpFWZSa88u7FYaUwy",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5iYcgbs8cBPBkz12mvT2sh",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "L7BYEjpFWZSa88u7FYaUwy",
+      "toEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "index": "wyvJq6OA.bU0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "RAM2e3rekBSo14nmsuDtf1",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "G3Q4pbBxMAs2PkFZBD4Y7x",
+      "toEntity": "L7BYEjpFWZSa88u7FYaUwy",
+      "index": "wyvJq6OA.bS0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Tjnr1Htw9AstbecRjWrZ4Y",
+      "value": {
+        "type": "TEXT",
+        "value": "Now, under President Donald Trump’s administration, which has signaled a shift in crypto oversight and a pivot away from the enforcement action style adopted by former SEC Chair Gary Gensler, Nexo is staging a comeback. The Trump administration has signaled intentions to reduce regulatory hostility toward crypto, including withdrawing some SEC investigations."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "AS1j2TWSKaeZ8eLAsXnA9U",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Tjnr1Htw9AstbecRjWrZ4Y",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MQh2SF7RBvBqMhMf2HaDGv",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "Tjnr1Htw9AstbecRjWrZ4Y",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.bc0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6KfzCW7deX2GKvc8x2RMJm",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "G3Q4pbBxMAs2PkFZBD4Y7x",
+      "toEntity": "Tjnr1Htw9AstbecRjWrZ4Y",
+      "index": "wyvJq6OA.bS0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Hyep8iWbmvFePRuFgDnej6",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "XH7irvc1kCqV6x2hauN1nS",
+      "toEntity": "G3Q4pbBxMAs2PkFZBD4Y7x",
+      "index": "wyvJq6OA.E0L"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "XH7irvc1kCqV6x2hauN1nS",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XCw2Zec96Xybamk7zMmqJf",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "T9dQizhTiqmYkTNf1uaj3u",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "E5YANG5YMQc2dYfrxNAK7L",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "UecgLKxzCK9mTfQQVDsume",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XBCMAiybiV6ZreR6z1Rxu3",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "UecgLKxzCK9mTfQQVDsume",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8JGbTThGjc326rvCxCCfVb",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "UecgLKxzCK9mTfQQVDsume",
+      "index": "wyvJq6OA.C0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "UecgLKxzCK9mTfQQVDsume",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo’s expanded digital asset offerings"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "C6yhHoU8HuZWVrjuABWA1C",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo manages about $11 billion in assets and will offer a full suite of high‑yield savings, crypto‑backed credit lines, advanced trading tools, and institutional‑grade liquidity solutions to U.S. customers"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "KcaZz9YX4xw9wR82KYUYFe",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "C6yhHoU8HuZWVrjuABWA1C",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "X23TYb2LRga7FjcGZ5GE6u",
+      "value": {
+        "type": "TEXT",
+        "value": "Now managing $11 billion in assets, Nexo said it will offer its full suite of services to U.S. retail and institutional clients, including high-yield savings products, asset-backed credit lines, and advanced trading solutions."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "EWEHxnMVk9sKQp39hNjteM",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "X23TYb2LRga7FjcGZ5GE6u",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6k9Yyrj4JJ5rYWToFA8ezs",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "C6yhHoU8HuZWVrjuABWA1C",
+      "toEntity": "X23TYb2LRga7FjcGZ5GE6u",
+      "index": "wyvJq6OA.bs0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "27KVZW1ntNrnxgJ2eaBxyc",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "UecgLKxzCK9mTfQQVDsume",
+      "toEntity": "C6yhHoU8HuZWVrjuABWA1C",
+      "index": "wyvJq6OA.bq0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "7jkGYZmUf7BgeaRK8wkbqb",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo targets both retail and institutional investors in its renewed U.S. expansion"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DpbqMJ1GSA3tPi3r5yUua6",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "7jkGYZmUf7BgeaRK8wkbqb",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ABh4u1G6HcxQju6BxpGvct",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "7jkGYZmUf7BgeaRK8wkbqb",
+      "toEntity": "X23TYb2LRga7FjcGZ5GE6u",
+      "index": "wyvJq6OA.cI0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "NFfeoWqqob9PfBrwiUuyay",
+      "value": {
+        "type": "TEXT",
+        "value": "The company revealed its return during a closed-door business event, where it announced plans to reintroduce crypto savings accounts, asset-backed loans, and other core offerings for both retail and institutional customers."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6BgtaLscwE8VGdwhFsyvdb",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "NFfeoWqqob9PfBrwiUuyay",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MyDuQyEDNtUzjeqMkLXorS",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "NFfeoWqqob9PfBrwiUuyay",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.cK0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3se1ZDMmcqzRgTUZLCudYz",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "7jkGYZmUf7BgeaRK8wkbqb",
+      "toEntity": "NFfeoWqqob9PfBrwiUuyay",
+      "index": "wyvJq6OA.cI0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "PXeYWBUSfSxdC9EVpsF83T",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "UecgLKxzCK9mTfQQVDsume",
+      "toEntity": "7jkGYZmUf7BgeaRK8wkbqb",
+      "index": "wyvJq6OA.bq0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "TXXwWhSBBDuDFe8ZtprKLu",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo offers a comprehensive range of digital asset products that includes cryptocurrency savings accounts with flexible and fixed terms, loans backed by digital assets, tools for advanced trading, and a debit/credit card designed for crypto users"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "UNve27tbamEAZF9wc6PW64",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "TXXwWhSBBDuDFe8ZtprKLu",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MbsA4sAQbiTpD1w1XxSHro",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "TXXwWhSBBDuDFe8ZtprKLu",
+      "toEntity": "NFfeoWqqob9PfBrwiUuyay",
+      "index": "wyvJq6OA.cY0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FB2536XTZaUxeeCviqSkcY",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "UecgLKxzCK9mTfQQVDsume",
+      "toEntity": "TXXwWhSBBDuDFe8ZtprKLu",
+      "index": "wyvJq6OA.bq0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "UecgLKxzCK9mTfQQVDsume",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "UWxKgzCnGYX28dueUz3eyt",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "8JGbTThGjc326rvCxCCfVb",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "26cFwsB35qZQd7xSCPeffa",
+      "value": {
+        "type": "TEXT",
+        "value": "Nexo’s return to the U.S. market after regulatory exile marks a renewed push for crypto innovation, backed by a friendlier political climate and a full suite of digital asset services."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "26cFwsB35qZQd7xSCPeffa",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "BYPYBaeyuEdrWJSiEd7hQZ",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "KZoK5XipQT8pF1UUqGuZ2G",
+      "toEntity": "Q1LaZhnzj8AtCzx8T1HRMf",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KZoK5XipQT8pF1UUqGuZ2G",
+      "attribute": "J6cw1v8xUHCFsEdPeuB1Uo",
+      "value": {
+        "type": "URL",
+        "value": "ipfs://bafybeih4h4w6xvv5ruif2ynghtc7ceitlpc3nedv3mbrzkv3nmpdqxbhzu"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KZoK5XipQT8pF1UUqGuZ2G",
+      "attribute": "GjaFuBBB8z63y9qr8dhaSP",
+      "value": {
+        "type": "NUMBER",
+        "value": "640"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "KZoK5XipQT8pF1UUqGuZ2G",
+      "attribute": "Xb3useEUkWV1Y9zYYkq4xp",
+      "value": {
+        "type": "NUMBER",
+        "value": "2384"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "79dGmW3dumhhed3Gxvi5CH",
+      "type": "7YHk6qYkNDaAtNb8GwmysF",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "KZoK5XipQT8pF1UUqGuZ2G",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Qj35JkNT8dJrTG2EUKmG16",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "VKPGYGnFuaoAASiAukCVCX",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "H7MuPiBL27QUdbdHMRUnqZ",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "Kmq1o4Vf4Azo9tkYp5eQzN",
+      "index": "wyvJq6OA.cg0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DDhEvLt7xvX5SoHEHePALV",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "RbmE4KB6dAG6PP5vZjaVrx",
+      "index": "wyvJq6OA.cg0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QSmaeHn98UzNHXhNv6TvBQ",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "QwaKXRLzMMYLnqMvcdr4Gs",
+      "index": "wyvJq6OA.cg0H"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8G9FQ1ZqHpnewUGwmERnRF",
+      "type": "Vtmojxf3rDL9VaAjG9T2NH",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "935HpUwxLp8mZebnb21DCN",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "PiRuySGksiDsDuKhw8djMJ",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "CPUXwDmJwjy4ewMvLAVtst",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Hw3GpFHoP9Vroofy2kNe2j",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "26cFwsB35qZQd7xSCPeffa",
+      "toEntity": "7WWfRVjheVwp5Bhe8EQGuG",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "3kgkZTeAVquX8JFWeGda31",
+      "value": {
+        "type": "TEXT",
+        "value": "Kevin Owocki and Devansh Mehta propose new Ethereum fee structure for Dapps"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SHbWiV7B5AYH7nTR6atua2",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "KiMfH31jTXL7E3U15qjoFn",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "APK1QkdQZaYT5V4uFsoUud",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "index": "wyvJq6OA.co0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "KGAoj59j2gEk6RCPoQe2KV",
+      "value": {
+        "type": "TEXT",
+        "value": "Summary"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community members Kevin Owocki and Devansh Mehta proposed a new dynamic fee structure to balance revenue for app builders and fairness for users"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "BBA1894NztMD9dWyhiwcsU",
+      "entity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-27T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "WChrAEJmKgpy2JY1UYaJsv",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "NKmPbXqFnJtxfuVZ5AUWgb",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "QAdjgcq9nD7Gv98vn2vrDd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "C6ygvqVcwxYFtu7UbsrQ5G",
+      "value": {
+        "type": "TEXT",
+        "value": "Two Ethereum community members, Kevin Owocki and Devansh Mehta, proposed a dynamic fee structure for the Ethereum application layer to strike a balance between revenue generation for app builders and fairness in fee extraction."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5rnaLqBdoPvbuicJ4gonH4",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "C6ygvqVcwxYFtu7UbsrQ5G",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "S36uM3AYpttECmoe394ugE",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community members propose new fee structure for the app layer"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "S36uM3AYpttECmoe394ugE",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community members Kevin Owocki and Devansh Mehta proposed a dynamic fee structure for the Ethereum application layer."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "S36uM3AYpttECmoe394ugE",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "S36uM3AYpttECmoe394ugE",
+      "value": {
+        "type": "URL",
+        "value": "https://cointelegraph.com/news/ethereum-community-members-propose-fee-structure-app-layer"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "L1m4EGpGZDNx9MUBN14TMc",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "STVWuNdC19214EeqkLxuT8",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SE7P7cf9ZyMz562f7tQbfr",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "STVWuNdC19214EeqkLxuT8",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "LC7JgiWTKzNoFGkTsMw4MH",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "S36uM3AYpttECmoe394ugE",
+      "toEntity": "STVWuNdC19214EeqkLxuT8",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "STVWuNdC19214EeqkLxuT8",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "STVWuNdC19214EeqkLxuT8",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"S36uM3AYpttECmoe394ugE\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Dbvzdgk5fkGqz8s2dXZwVx",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "LC7JgiWTKzNoFGkTsMw4MH",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "E9CSJVqYsqD8BZBzD4n6Wr",
+      "type": "Lc4JrkpMUPhNstqs7mvnc5",
+      "fromEntity": "S36uM3AYpttECmoe394ugE",
+      "toEntity": "K1RYDqSU7ZmSdn5gNRj9ay",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Mxf945mutMMyo8mAMkdSaT",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "S36uM3AYpttECmoe394ugE",
+      "toEntity": "WyqELVXLQrwK7nFTXNKKZG",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TtBR2Auy9gZLdoBHHKx38T",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "S36uM3AYpttECmoe394ugE",
+      "toEntity": "M5uDP7nCw3nvfQPUryn9gx",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FjXRL7zoVSgdkYoscXeJFv",
+      "type": "JzFpgguvcCaKhbQYPHsrNT",
+      "fromEntity": "S36uM3AYpttECmoe394ugE",
+      "toEntity": "G88uPCQ5ebzTYtbq8bQEtt",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "JQ1g5K3sqvB4fUiu3or7oB",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "C6ygvqVcwxYFtu7UbsrQ5G",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.cu0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "PECveFSW1Nmd3715Zwi3i3",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "C6ygvqVcwxYFtu7UbsrQ5G",
+      "index": "wyvJq6OA.cs0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "9RP2EDvUr5MiuTpuH1ANRE",
+      "value": {
+        "type": "TEXT",
+        "value": "As Ethereum goes through a period of economic weakness, two members of its community, Kevin Owocki and Devansh Mehta, have just proposed an innovative reform to boost its application ecosystem. Their idea: to introduce a dynamic fee structure aimed at better balancing developers’ revenues and fairness for users."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "KNb8WfZAXpPPKmjJUUiSoQ",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "9RP2EDvUr5MiuTpuH1ANRE",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "value": {
+        "type": "TEXT",
+        "value": "The Ethereum Community Proposes A Fee Reform To Revitalize Its Ecosystem."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community members Kevin Owocki and Devansh Mehta proposed a dynamic fee reform aimed at revitalizing the Ethereum ecosystem."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-28T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "value": {
+        "type": "URL",
+        "value": "https://www.cointribune.com/en/the-ethereum-community-proposes-a-fee-reform-to-revitalize-its-ecosystem/"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "WAkKZhkV5zjtyCnZjb6Kjd",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "PnMF2Zx7Jco6VFj2Ydphr8",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2bX2sRLZ7DwcEAwRVtMFrr",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "PnMF2Zx7Jco6VFj2Ydphr8",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SVBMYYPeH3QevkAe3i8E3g",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "toEntity": "PnMF2Zx7Jco6VFj2Ydphr8",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "PnMF2Zx7Jco6VFj2Ydphr8",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "PnMF2Zx7Jco6VFj2Ydphr8",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"NpbLtajCdGZ2BEEXbVE7xH\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "R3znoErGFdqPw41sAF3zAT",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "SVBMYYPeH3QevkAe3i8E3g",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6bP8DVVFjkxAPUj65Z8Abh",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "VhkpWW1fDJWzwShepgQJAc",
+      "toEntity": "Q1LaZhnzj8AtCzx8T1HRMf",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "VhkpWW1fDJWzwShepgQJAc",
+      "attribute": "J6cw1v8xUHCFsEdPeuB1Uo",
+      "value": {
+        "type": "URL",
+        "value": "ipfs://bafkreiefktn2exxjl3yakj4q7iujdmtvgnv56dega6dzjj45lifdp72onm"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "VhkpWW1fDJWzwShepgQJAc",
+      "attribute": "GjaFuBBB8z63y9qr8dhaSP",
+      "value": {
+        "type": "NUMBER",
+        "value": "400"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "VhkpWW1fDJWzwShepgQJAc",
+      "attribute": "Xb3useEUkWV1Y9zYYkq4xp",
+      "value": {
+        "type": "NUMBER",
+        "value": "400"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "JBYBqws5eXfo6wnUVzSjrc",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "toEntity": "VhkpWW1fDJWzwShepgQJAc",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "H2a2ZyH7DW9kmtKs8PQCx8",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "toEntity": "M5uDP7nCw3nvfQPUryn9gx",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FsZAbAtkS3ZHK5zXU5tHGi",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "9RP2EDvUr5MiuTpuH1ANRE",
+      "toEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "index": "wyvJq6OA.dI0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "YbczDWHMYWyE8MUJCnBGbH",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "9RP2EDvUr5MiuTpuH1ANRE",
+      "index": "wyvJq6OA.cs0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "VUiariGNkTs7581pqiXufU",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "RYd7EZjtKsPvqwN7eAdJrD",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "AhjmMTS1ac79CpoXRkMiSp",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "toEntity": "7WWfRVjheVwp5Bhe8EQGuG",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "YJm3t113J1PqRkSe1esshm",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "UUe5WHYyMPeeJkxcFbtbvQ",
+      "index": "wyvJq6OA.cq0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "NHhhhWzSWsyrbc2h268Q9V",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's fee reform proposed by Kevin Owocki and Devansh Mehta uses a formula where smaller projects pay a higher percentage in fees, while larger projects pay a lower percentage"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "VwBZKMwGf1uN6Mr2pVrJZK",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "NHhhhWzSWsyrbc2h268Q9V",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "JCuU6eRdgKHdN7BkV7aUNn",
+      "value": {
+        "type": "TEXT",
+        "value": "The April 27 proposal outlined a simple equation that uses a square root function that proportionally lowers the percentage of fees as the funding capital allocated to a particular project grows. Owocki and Mehta explained:"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SmVSyMzSLotti1KXJfPdU9",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "JCuU6eRdgKHdN7BkV7aUNn",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Cg4mm13HLkLjGfZfLJbMKT",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "JCuU6eRdgKHdN7BkV7aUNn",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.de0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "KfEPmMF5kPbXLKfNnm7HA7",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "NHhhhWzSWsyrbc2h268Q9V",
+      "toEntity": "JCuU6eRdgKHdN7BkV7aUNn",
+      "index": "wyvJq6OA.dc0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "KxYv4ppTEYhUokDsvHZBS6",
+      "value": {
+        "type": "TEXT",
+        "value": "For smaller funding amounts, the fee follows a square root function (sqrt(1000 * N)), providing proportionally higher returns to make building mechanisms for smaller pools worthwhile. For example, if the funding pool is $170,000, then root of 1000 * 170,000 = $13,038.4 or 7% is taken as overhead."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2DYhgAhQ7jf2qHQ3yXb7aY",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "KxYv4ppTEYhUokDsvHZBS6",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "value": {
+        "type": "TEXT",
+        "value": "Fair fees: A dynamic formula for balancing dapp value creation/capture"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community members Kevin Owocki and Devansh Mehta have introduced a proposal titled “Fair Fees: A Dynamic Formula for Balancing Dapp Value Creation & Capture”."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-27T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "93stf6cgYvBsdPruRzq1KK",
+      "entity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "value": {
+        "type": "URL",
+        "value": "https://ethresear.ch/t/fair-fees-a-dynamic-formula-for-balancing-dapp-value-creation-capture/22225"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4vG7u4b8MFapdEz5RW5hYZ",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "VT8jPPJsBPmwkQYqD8Fzp6",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XbuJNTSje8aLLFaGz58nva",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "VT8jPPJsBPmwkQYqD8Fzp6",
+      "toEntity": "8HkP7HCufp2HcCFajuJFcq",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QN53SZvoMA6dpRaerQp9Ts",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "toEntity": "VT8jPPJsBPmwkQYqD8Fzp6",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "VT8jPPJsBPmwkQYqD8Fzp6",
+      "value": {
+        "type": "TEXT",
+        "value": "Highlighed quotes"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "VT8jPPJsBPmwkQYqD8Fzp6",
+      "value": {
+        "type": "TEXT",
+        "value": "{\n  \"where\": {\n    \"spaces\": [\n      \"BDuZwkjCg3nPWMDshoYtpS\"\n    ],\n    \"AND\": [\n      {\n        \"attribute\": \"Jfmby78N4BCseZinBmdVov\",\n        \"is\": \"XGsAzMuCVXPtV8e6UfMLd\"\n      },\n      {\n        \"attribute\": \"A7NJF2WPh8VhmvbfVWiyLo\",\n        \"is\": \"4Gj934FMrKrnjH5Nmm5vDD\"\n      }\n    ]\n  }\n}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MwL1tymMhca373kjbHX1HM",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "QN53SZvoMA6dpRaerQp9Ts",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TM47bf7FewrapVRhtfj9bh",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "5ggmfWeKvttQiJwVeNBDSo",
+      "toEntity": "Q1LaZhnzj8AtCzx8T1HRMf",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "5ggmfWeKvttQiJwVeNBDSo",
+      "attribute": "J6cw1v8xUHCFsEdPeuB1Uo",
+      "value": {
+        "type": "URL",
+        "value": "ipfs://bafkreibdht7m32hjlhexdtjfyz36sr7k6khgz2lzxke5txsy2mkirlyboa"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "5ggmfWeKvttQiJwVeNBDSo",
+      "attribute": "GjaFuBBB8z63y9qr8dhaSP",
+      "value": {
+        "type": "NUMBER",
+        "value": "500"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "5ggmfWeKvttQiJwVeNBDSo",
+      "attribute": "Xb3useEUkWV1Y9zYYkq4xp",
+      "value": {
+        "type": "NUMBER",
+        "value": "500"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Qy3HxXEjLuPMtfjThXaTvb",
+      "type": "399xP4sGWSoepxeEnp3UdR",
+      "fromEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "toEntity": "5ggmfWeKvttQiJwVeNBDSo",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Dux4Eo79QRZfwpu6BbUrEb",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "toEntity": "X7KuZJQewaCiCy9QV2vjyv",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XphL88GtBEQRq1fjQqTSDb",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "KxYv4ppTEYhUokDsvHZBS6",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.dm0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Kmbd8SC33Edaq8KKFfXoLD",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "NHhhhWzSWsyrbc2h268Q9V",
+      "toEntity": "KxYv4ppTEYhUokDsvHZBS6",
+      "index": "wyvJq6OA.dc0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TE26BHxFkLc6waQ8Mqf85o",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "NHhhhWzSWsyrbc2h268Q9V",
+      "index": "wyvJq6OA.cq0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "WxRynXYgUr9PpJZg9xZVet",
+      "value": {
+        "type": "TEXT",
+        "value": "Kevin Owocki and Devansh Mehta designed Ethereum's fee reform to cap fees at 1% once project funding exceeds $10 million, aiming to promote growth without imposing excessive costs on developers"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DJiFMWwpwev8phGqZwNPMy",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "WxRynXYgUr9PpJZg9xZVet",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "JYh1G7zWfyBNXTa3Wq9CXE",
+      "value": {
+        "type": "TEXT",
+        "value": "The authors of the proposal added that fees would be capped at 1% once a particular application's funding pool crossed the $10 million level, ensuring that small app builders can develop decentralized applications without excess fees while also encouraging project and funding growth by capping fees as developers scale their applications."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Wh9jGQMtdbv7citpYF3r5n",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "JYh1G7zWfyBNXTa3Wq9CXE",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "KkzHBN86rAg2zjJgDXH2Fk",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "JYh1G7zWfyBNXTa3Wq9CXE",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.eI0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9vaTJSiFrqqg3JE9zz4Aza",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "WxRynXYgUr9PpJZg9xZVet",
+      "toEntity": "JYh1G7zWfyBNXTa3Wq9CXE",
+      "index": "wyvJq6OA.eG0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "QrHt3NAn9mPefTYs6UMD6Z",
+      "value": {
+        "type": "TEXT",
+        "value": "Once funding exceeds $10 million, the fee transitions to a flat 1% rate (N * 0.01)"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6kyVEnPksR7v5mhJrkGsid",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "QrHt3NAn9mPefTYs6UMD6Z",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SY1qvm2nXYL9Ac3YuosaR2",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "QrHt3NAn9mPefTYs6UMD6Z",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.eQ0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Vz37uZC3rSeWTAqacGKRrg",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "WxRynXYgUr9PpJZg9xZVet",
+      "toEntity": "QrHt3NAn9mPefTYs6UMD6Z",
+      "index": "wyvJq6OA.eG0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "E8dGgDYR3zH9xGQ6tLHju1",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "WxRynXYgUr9PpJZg9xZVet",
+      "index": "wyvJq6OA.cq0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "BpBgHRdPTwXvGfStNYrzPq",
+      "value": {
+        "type": "TEXT",
+        "value": "Kevin Owocki and Devansh Mehta clarified that their fee reform targets individual applications and does not propose any changes to Ethereum’s core protocol-level economics"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4zW6vKC7AhTUU22XsHoV71",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "BpBgHRdPTwXvGfStNYrzPq",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "9rV7y9SKGBM5MLmt2PjVqY",
+      "value": {
+        "type": "TEXT",
+        "value": "IMPORTANT: THIS IS A PROPOSAL ONLY FOR INDIVIDUAL APPS TO THINK ABOUT MONETIZING THEIR APP. IT IS NOT A PROPOSAL TO CHANGE ANY ECONOMICS AT PROTOCOL LAYER!"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "M9zhEqtNtUPbo8f7ttWWDZ",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "9rV7y9SKGBM5MLmt2PjVqY",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "H8SBdVB9pZWUUfPY1bphzY",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "9rV7y9SKGBM5MLmt2PjVqY",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.eg0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6zKj3RcfX9trHiohyFrBkn",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "BpBgHRdPTwXvGfStNYrzPq",
+      "toEntity": "9rV7y9SKGBM5MLmt2PjVqY",
+      "index": "wyvJq6OA.ee0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "HF7dLXTH2TTixM3zWt39Ps",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "BpBgHRdPTwXvGfStNYrzPq",
+      "index": "wyvJq6OA.cq0J"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "PDDzEcc5zRZHSPiGYFjCUN",
+      "value": {
+        "type": "TEXT",
+        "value": "Builders of dapps on Ethereum face a fundamental tension between generating sustainable revenue for development and maintenance and keeping fees low enough to preserve the purpose and effectiveness of their systems"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4mfbfduTkwbM9deSMtptTj",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "PDDzEcc5zRZHSPiGYFjCUN",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "WKQb56VyVpSLm3SLcHYXma",
+      "value": {
+        "type": "TEXT",
+        "value": "Builders of dapps face a fundamental tension: they need viable revenue to develop and maintain these systems, but excessive fees can undermine their purpose and effectiveness."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "UR5ZnKWbwvxEUbj8ufUpn3",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "WKQb56VyVpSLm3SLcHYXma",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DpzuDGBaPG5HiemwParzj4",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "WKQb56VyVpSLm3SLcHYXma",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.ew0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MrTwQS5bMPGhiEiDH4UiuL",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "PDDzEcc5zRZHSPiGYFjCUN",
+      "toEntity": "WKQb56VyVpSLm3SLcHYXma",
+      "index": "wyvJq6OA.eu0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DpJtwukqjzV6FKUjBFa56c",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "KGAoj59j2gEk6RCPoQe2KV",
+      "toEntity": "PDDzEcc5zRZHSPiGYFjCUN",
+      "index": "wyvJq6OA.cq0L"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "KGAoj59j2gEk6RCPoQe2KV",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2ud6yCy4j3sYh6SFnhz2ZE",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "APK1QkdQZaYT5V4uFsoUud",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DqqWuwvFcBFkjYuvKr4jLH",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "ACXXUpMjB9agoUTJep68bP",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "PFZkK4bMenezJy8UhK32sK",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "ACXXUpMjB9agoUTJep68bP",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Rty2ruzTKaRZARs8zXSudf",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "ACXXUpMjB9agoUTJep68bP",
+      "index": "wyvJq6OA.co0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "ACXXUpMjB9agoUTJep68bP",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's competitive challenges"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "value": {
+        "type": "TEXT",
+        "value": "Solana onboarded 7,625 new developers in 2024, surpassing Ethereum’s 6,456 new developers and challenging Ethereum’s dominance in attracting developer talent"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "BBA1894NztMD9dWyhiwcsU",
+      "entity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "value": {
+        "type": "TIME",
+        "value": "2024-12-31T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Pmnsf7prhBHfFGJYG5jToR",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "APmLt5ndv8Fnqm9AWXxUtD",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "QAdjgcq9nD7Gv98vn2vrDd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "MA5c8wddS7RCXFWirLcYfe",
+      "value": {
+        "type": "TEXT",
+        "value": "In 2024, the Solana ecosystem onboarded more developers than the Ethereum network, attracting 7,625 new developers compared with Ethereum’s 6,456."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "21VVNBaedYBCcszVemZnJg",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "MA5c8wddS7RCXFWirLcYfe",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Q45Y9bDj1SE4sxNmajTun2",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "MA5c8wddS7RCXFWirLcYfe",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.fO0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Tt7mmbVaLs9LSGpR3RaZ4D",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "MA5c8wddS7RCXFWirLcYfe",
+      "index": "wyvJq6OA.fM0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "8Daar2xcMZgHwQDXU182ok",
+      "value": {
+        "type": "TEXT",
+        "value": "This initiative comes at a difficult time for Ethereum. In 2024, the Solana blockchain recruited more developers (7,625) than Ethereum (6,456), challenging its historical dominance in the crypto sector. Added to this is a significant drop in fees on Ethereum, which reached their lowest level in five years in April 2025, according to Santiment. This decline is linked to the downturn in DeFi activities and the loss of momentum in the base layer."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "YcHUAsBsbA1o9txrpVLZTB",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "8Daar2xcMZgHwQDXU182ok",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Q6SnK9gLnkgeVvcoY49zoB",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "8Daar2xcMZgHwQDXU182ok",
+      "toEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "index": "wyvJq6OA.fW0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TJnhgocNVzgV1duwA32Gd3",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "8Daar2xcMZgHwQDXU182ok",
+      "index": "wyvJq6OA.fM0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DErP43FVoKfEcX58G8YoN7",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "KgY8LCetybanzKuGAL3zan",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "K5waqLk9YWh1Wu9kZQcebS",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "toEntity": "F9vB59UjcNVvWSvoFxmmw7",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "U3kKmXuQcNqTgYLEWLPJzT",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "ACXXUpMjB9agoUTJep68bP",
+      "toEntity": "3cnDjh7HHJ8MjV1ZjxDqcH",
+      "index": "wyvJq6OA.fK0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "QMRFTpT6Bpcc4mwMgsUyGB",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum’s transaction fees reached their lowest point in five years as of April 2025, according to analytics firm Santiment"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "JgNX9PBgXDNhmYXaukiS7s",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "QMRFTpT6Bpcc4mwMgsUyGB",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "AbQPozQbYda4opf5q3mCMD",
+      "value": {
+        "type": "TEXT",
+        "value": "According to onchain analytics firm Santiment, Ethereum fees dropped to five-year lows in April 2025 due to low activity on the Ethereum base layer resulting from reduced demand for smart contract operations like decentralized finance."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DMdEtMbtB7aKAnYtUtyFnH",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "AbQPozQbYda4opf5q3mCMD",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "UPdnuCJbZtjJZY9oapBbCu",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "AbQPozQbYda4opf5q3mCMD",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.fm0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XGSnka6ryH8M7w4mY87RFF",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "QMRFTpT6Bpcc4mwMgsUyGB",
+      "toEntity": "AbQPozQbYda4opf5q3mCMD",
+      "index": "wyvJq6OA.fk0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DVeVqUHyeEwDPFBa6C21kU",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "QMRFTpT6Bpcc4mwMgsUyGB",
+      "toEntity": "8Daar2xcMZgHwQDXU182ok",
+      "index": "wyvJq6OA.fk0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8WB6sG1gfotskgGTa5DjTQ",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "ACXXUpMjB9agoUTJep68bP",
+      "toEntity": "QMRFTpT6Bpcc4mwMgsUyGB",
+      "index": "wyvJq6OA.fK0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "B5qZkS8Ya16zjPjESSdAKK",
+      "value": {
+        "type": "TEXT",
+        "value": "Institutional investors, as of April 2025, began scaling back their Ether holdings amid declining investor confidence and diminished clear growth catalysts"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "EVxySsSLicLnWk5HNufaeB",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "B5qZkS8Ya16zjPjESSdAKK",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Ho8YuHJYytdyFPBBCQCSj5",
+      "value": {
+        "type": "TEXT",
+        "value": "This reduced demand is leading to many institutions scaling back their Ether holdings or selling off portions of their investment as investor sentiment toward the first-ever smart-contract platform continues to erode without any clear catalysts for a reversal."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FTrmcBttZYQEdRPCSn2hLv",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Ho8YuHJYytdyFPBBCQCSj5",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "535aeYnYkQp7HP4esBsMBs",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "Ho8YuHJYytdyFPBBCQCSj5",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.gC0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "SajCLZmKxdxLA4GQTfZDTJ",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "B5qZkS8Ya16zjPjESSdAKK",
+      "toEntity": "Ho8YuHJYytdyFPBBCQCSj5",
+      "index": "wyvJq6OA.gA0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "X14cP359QJKXgy4TwAHBJh",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "ACXXUpMjB9agoUTJep68bP",
+      "toEntity": "B5qZkS8Ya16zjPjESSdAKK",
+      "index": "wyvJq6OA.fK0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "ACXXUpMjB9agoUTJep68bP",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "MFnPVHB2TG2rr5ou57Vh1G",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "Rty2ruzTKaRZARs8zXSudf",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "D54yTuk5y6m7zhH2NFFG9v",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3jbwphoyRrnQEgBnYbS3wk",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "EUuXBBJX3A6mDwPVDwxzvQ",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "index": "wyvJq6OA.co0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "value": {
+        "type": "TEXT",
+        "value": "Strategic implications of the fee reform"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "3MuurbcvPcTZiV679gppS6",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's fee reform proposed by Kevin Owocki and Devansh Mehta could significantly attract more developers, increasing application creation and ecosystem activity"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5Hmdjxhok8RGuUSMri5ye1",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3MuurbcvPcTZiV679gppS6",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Fig5C2tVoNnpodUkLb33Kz",
+      "value": {
+        "type": "TEXT",
+        "value": "If the proposal is approved, it could revitalize the Ethereum ecosystem by attracting more developers and stimulating the creation of decentralized applications. This momentum could increase network activity, generate more transactions, raise overall fees, and restore crypto investors’ interest. Ultimately, this could support ETH demand, strengthen its valuation, and reverse the current downward trend of ETH."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DnbyTgyaaQVFb7vB8ngQ7F",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Fig5C2tVoNnpodUkLb33Kz",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "NqpXc9viHFVf6QU3inG5tP",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "Fig5C2tVoNnpodUkLb33Kz",
+      "toEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "index": "wyvJq6OA.gU0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "VQHG1VjDqujSfvMhnvuSjB",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "3MuurbcvPcTZiV679gppS6",
+      "toEntity": "Fig5C2tVoNnpodUkLb33Kz",
+      "index": "wyvJq6OA.gS0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "DRKJdqkfAGpvouy8A3dL1t",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "toEntity": "3MuurbcvPcTZiV679gppS6",
+      "index": "wyvJq6OA.gQ0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "STQzdHKD2har1seE93XiDL",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's fee reform proposed by Kevin Owocki and Devansh Mehta is expected to positively impact transaction throughput by encouraging more activity on the network"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "GMTedovKrZniUfHdMyJfZy",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "STQzdHKD2har1seE93XiDL",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "G58bFXK5PAs9vcTuZqhBVm",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "STQzdHKD2har1seE93XiDL",
+      "toEntity": "Fig5C2tVoNnpodUkLb33Kz",
+      "index": "wyvJq6OA.gi0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "BAsvm4hJt5YXVUV1jGCocm",
+      "value": {
+        "type": "TEXT",
+        "value": "By implementing a dynamic fee structure that scales with funding amounts, we can create a balanced system that works effectively across different funding scales and use cases. This approach avoids the extremes of insufficient incentives or excessive extraction, creating a more sustainable ecosystem for experimentation with dapps."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "K3tLPDR4sA1KvMZ4s1Nc3L",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "BAsvm4hJt5YXVUV1jGCocm",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "FLyst28Y9i1S1f5G8udhgB",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "BAsvm4hJt5YXVUV1jGCocm",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.gk0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "LqvyYX5AJHpFx5T1VNbEzx",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "STQzdHKD2har1seE93XiDL",
+      "toEntity": "BAsvm4hJt5YXVUV1jGCocm",
+      "index": "wyvJq6OA.gi0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "GCPbTVyAq2Stow8g9YN6RC",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "toEntity": "STQzdHKD2har1seE93XiDL",
+      "index": "wyvJq6OA.gQ0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "VQnrCDA8NDgY8E8nn5bCvm",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QvooKrQA6ZmjDqLoeoJmHE",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "EUuXBBJX3A6mDwPVDwxzvQ",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XoFaoFnrnz8P4tkvypynwH",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "toEntity": "PnQsGwnnztrLNRCm9mcKKY",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "LTffWMjh8ZDQiTjbiqh3Qj",
+      "type": "4sz7Kx91uq4KBW5sohjLkj",
+      "fromEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "toEntity": "3J6223VX6MkwTftWdzDfo4",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9Kv7UpDPvriq3BPBTPv7ty",
+      "type": "QYbjCM6NT9xmh2hFGsqpQX",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "index": "wyvJq6OA.co0J"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "value": {
+        "type": "TEXT",
+        "value": "Implementation and community engagement"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "TVvesLgR1cRhm4FusozFEH",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's fee reform proposed by Kevin Owocki and Devansh Mehta includes pilot implementations in experimental funding rounds such as Gitcoin Grants (GG24) and Deep Funding"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6HwiRwuhDnwNNbboQyJaEW",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "TVvesLgR1cRhm4FusozFEH",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Efd6KMSKatRph3LokJx3nr",
+      "value": {
+        "type": "TEXT",
+        "value": "To move from theory to practice, we propose the following next steps:  Begin experimenting with these fee mechanisms in smaller test rounds across different types of capital allocation dapps (public goods funding, private investment pools, other models)  Possible specific pilots  Implement this as a fee mechanism for community round organizers in the upcoming Gitcoin Grants round (GG24) Implement this as a fee mechanism for novel capital allocation experiments, like Deep Funding. Consider directing 10-25% of the overhead charged with the formula to funding dependencies of the mechanism itself (such as underlying smart contracts and open source repos that it uses) to transform what might feel like an extractive fee into a constructive experiment to fund the mechanisms own dependencies"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "XDme99xcWFMKdhJGuTi1bF",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Efd6KMSKatRph3LokJx3nr",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4geoV29zionXTEDoXwdFU6",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "Efd6KMSKatRph3LokJx3nr",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.hC0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "TMU6MXphTGEPRCKRHeWc2A",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "TVvesLgR1cRhm4FusozFEH",
+      "toEntity": "Efd6KMSKatRph3LokJx3nr",
+      "index": "wyvJq6OA.hA0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2GZPZVSiEpF6AESMHhWb1e",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "toEntity": "TVvesLgR1cRhm4FusozFEH",
+      "index": "wyvJq6OA.gy0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "6RSgKmajwoZdL8BevNuWQ5",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum community discussions are ongoing regarding whether the proposed 1% fee cap and $10 million threshold are optimal parameters for sustainable growth"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "GSwNSBGQgu8AeF9NHRReio",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "6RSgKmajwoZdL8BevNuWQ5",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "Vgkcx8Ag3sVoYNCTWcUbKs",
+      "value": {
+        "type": "TEXT",
+        "value": "While we believe this formula represents a promising approach, several questions remain open for community discussion:"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "BKBub4q9aDvWQ6NNuXJRcb",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "Vgkcx8Ag3sVoYNCTWcUbKs",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "X3h6DDWBTL2CLwgxKGPWzA",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "Vgkcx8Ag3sVoYNCTWcUbKs",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.hS0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3ehNeFKqVmt8AEDnd29WPD",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "6RSgKmajwoZdL8BevNuWQ5",
+      "toEntity": "Vgkcx8Ag3sVoYNCTWcUbKs",
+      "index": "wyvJq6OA.hQ0D"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "M7oequfduht7BE5F5kPru3",
+      "value": {
+        "type": "TEXT",
+        "value": "Owocki and Mehta's proposal to balance revenue generation and profitability among Ethereum's app builders reflects the growing calls to reform fee structures and value accrual mechanisms to maintain Ethereum's economic viability against competing networks."
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "N4NsdcQE6yke8jQFkneeX8",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "M7oequfduht7BE5F5kPru3",
+      "toEntity": "XGsAzMuCVXPtV8e6UfMLd",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "BuNCqX9tFtBpC73HpFTtxg",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "M7oequfduht7BE5F5kPru3",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.ha0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "Hv17e8LPKYHGDGXEV8xd3M",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "6RSgKmajwoZdL8BevNuWQ5",
+      "toEntity": "M7oequfduht7BE5F5kPru3",
+      "index": "wyvJq6OA.hQ0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ScpQoQNY5UQzJMqmFmrhj7",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "toEntity": "6RSgKmajwoZdL8BevNuWQ5",
+      "index": "wyvJq6OA.gy0F"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LuBWqZAu6pz54eiJS5mLv8",
+      "entity": "RdUD268G9bebuK3V5yaho1",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum's fee reform proposed by Kevin Owocki and Devansh Mehta includes a suggestion to allocate a portion of collected fees to smart contract dependencies"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "JSZR4fagCnqt3LcEugmdSm",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "RdUD268G9bebuK3V5yaho1",
+      "toEntity": "KeG9eTM8NUYFMAjnsvF4Dg",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3Girw28VmZE8r7w7dBME1o",
+      "type": "quotesThatSupportClaims",
+      "fromEntity": "RdUD268G9bebuK3V5yaho1",
+      "toEntity": "Efd6KMSKatRph3LokJx3nr",
+      "index": "wyvJq6OA.ho0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "PGT1hsavWMpPKzJSEYqcXx",
+      "type": "Mwrn46KavwfWgNrFaWcB9j",
+      "fromEntity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "toEntity": "RdUD268G9bebuK3V5yaho1",
+      "index": "wyvJq6OA.gy0H"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "3YqoLJ7uAPmthXyXmXKoSa",
+      "entity": "7Db9ZyX38ZuUSiKnvTB91d",
+      "value": {
+        "type": "TEXT",
+        "value": "{\"where\":{\"AND\":[{\"attribute\":\"Jfmby78N4BCseZinBmdVov\",\"is\":\"KeG9eTM8NUYFMAjnsvF4Dg\"}]}}"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2baXr7W5m1BLz357vzjBRK",
+      "type": "46GzPiTRPG36jX9dmNE9ic",
+      "fromEntity": "9Kv7UpDPvriq3BPBTPv7ty",
+      "toEntity": "2KQ8CHTruSetFbi48nsHV3",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "LA1DqP5v6QAdsgLPXGF3YA",
+      "entity": "3kgkZTeAVquX8JFWeGda31",
+      "value": {
+        "type": "TEXT",
+        "value": "Ethereum’s fee reform proposed by Kevin Owocki and Devansh Mehta introduces a dynamic, app-level pricing model designed to support smaller developers."
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "attribute": "KPNjGaLx5dKofVhT6Dfw22",
+      "entity": "3kgkZTeAVquX8JFWeGda31",
+      "value": {
+        "type": "TIME",
+        "value": "2025-04-27T00:00:00.000Z",
+        "options": {
+          "format": "MMMM d, yyyy"
+        }
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "C9MEUVYhvj5A9ydDEC5TZc",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3jFr6Z3VDgSTWXL7GFp2fP",
+      "toEntity": "Q1LaZhnzj8AtCzx8T1HRMf",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "3jFr6Z3VDgSTWXL7GFp2fP",
+      "attribute": "J6cw1v8xUHCFsEdPeuB1Uo",
+      "value": {
+        "type": "URL",
+        "value": "ipfs://bafkreiabpdxip2uetzhslhjc6t4wzqjteiausncyesca6ur3hdyrqjr56u"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "3jFr6Z3VDgSTWXL7GFp2fP",
+      "attribute": "GjaFuBBB8z63y9qr8dhaSP",
+      "value": {
+        "type": "NUMBER",
+        "value": "640"
+      }
+    }
+  },
+  {
+    "type": "SET_TRIPLE",
+    "triple": {
+      "entity": "3jFr6Z3VDgSTWXL7GFp2fP",
+      "attribute": "Xb3useEUkWV1Y9zYYkq4xp",
+      "value": {
+        "type": "NUMBER",
+        "value": "2384"
+      }
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6HVqyu79VfCDUt3bMPDdqA",
+      "type": "7YHk6qYkNDaAtNb8GwmysF",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "3jFr6Z3VDgSTWXL7GFp2fP",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "P2MckvHyb7gqocvJk2oGHC",
+      "type": "Jfmby78N4BCseZinBmdVov",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "VKPGYGnFuaoAASiAukCVCX",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "W7RbGAgWy26BppSAAh7ryw",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "S36uM3AYpttECmoe394ugE",
+      "index": "wyvJq6OA.hw0D"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QNjsTSgVMGFwcfAqDTkBLG",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "NpbLtajCdGZ2BEEXbVE7xH",
+      "index": "wyvJq6OA.hw0F"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "T6LS8U9T4rdWGK1PKBS7bP",
+      "type": "A7NJF2WPh8VhmvbfVWiyLo",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "4Gj934FMrKrnjH5Nmm5vDD",
+      "index": "wyvJq6OA.hw0H"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7TWaHk2u9pYVijSHBY1kCY",
+      "type": "Vtmojxf3rDL9VaAjG9T2NH",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "935HpUwxLp8mZebnb21DCN",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "YFFDEKANqxKSWdXpkVst92",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "RYd7EZjtKsPvqwN7eAdJrD",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6dX5nKcxvvSvpv3oLfnQ2u",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "7WWfRVjheVwp5Bhe8EQGuG",
+      "index": "wyvJq6OA.B"
+    }
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "QCbeWhHza4ejhwmBThtvBX",
+      "type": "5d9VVey3wusmk98Uv3v5LM",
+      "fromEntity": "3kgkZTeAVquX8JFWeGda31",
+      "toEntity": "M8KF4D9sADRiug5RLhfGhY",
+      "index": "wyvJq6OA.B"
+    }
+  }
+]

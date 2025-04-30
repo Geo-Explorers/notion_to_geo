@@ -1,9 +1,9 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import { TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewRelation, processNewTriple } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps } from "./search_entities";
+import { searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processQuote } from "./process_quote";
 import { processPerson } from "./process_person";
 import { processTags } from "./process_tags";
@@ -31,13 +31,10 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
 
     //Description
     const desc = getConcatenatedPlainText(page.properties["Description"]?.rich_text);
-    //console.log("Description:", desc);
 
-    // Publish date
-    //const publish_date = sourcePage.properties["Publish date"]?.date?.start ?? "NONE";
+    // Event date - If news event type
     const event_date = page.properties["Date (news event only)"]?.date?.start 
     ? new Date(page.properties["Date (news event only)"].date.start).toISOString().split("T")[0] + "T00:00:00.000Z": "NONE";
-    //console.log("Date (news event only):", event_date);
 
     //HANDLE TAGS (BOTH DATE AND WEEK XX OF YEAR)
     const tag_date = page.properties["Date (news event only)"]?.date?.start ?? "NONE";
@@ -45,96 +42,55 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
     
     if (geoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", name, GEO_IDS.claimTypeId)) {
         return [ops, geoId]
-    } else if (geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.claimTypeId)) { //Search graphDB for web url
-        return [ops, geoId]
     } else {
-        //WRITE OPS IF NECESSARY
-        geoId = Id.generate();
-        
-        //Write name ops
-        
+        geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.claimTypeId)
+        let entityOnGeo;
+        if (!geoId) {
+            geoId = Id.generate();
+        } else {
+            entityOnGeo = await searchEntity(geoId);
+            console.log("entity exists on geo")
+        }
+
         if (name != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: SystemIds.NAME_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: name,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+            ops.push(...addOps);
         }
 
-        //Write Description ops
+            //Write Description ops
         if (desc != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: SystemIds.DESCRIPTION_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: desc,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
+            ops.push(...addOps);
         }
 
+        // Write Types ops
+        addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.claimTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+        ops.push(...addOps);
+        
         //Write publish date ops
         if (event_date != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: GEO_IDS.eventDatePropertyId, 
-                value: {
-                    type: "TIME",
-                    value: event_date,
-                    options: {
-                        format: "MMMM d, yyyy",
-                    }
-                },
-            });
-            ops.push(addOps);
-        }
-        // Write Types ops
-        
-        addOps = Relation.make({
-            fromId: geoId,
-            toId: GEO_IDS.claimTypeId,
-            relationTypeId: SystemIds.TYPES_PROPERTY,
-        });
-        ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.eventDatePropertyId, event_date, "TIME", "MMMM d, yyyy");
+            ops.push(...addOps);
 
-        if (event_date != "NONE") {
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: GEO_IDS.newsEventTypeId,
-                relationTypeId: SystemIds.TYPES_PROPERTY,
-            });
-            ops.push(addOps);
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.newsEventTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
         }
-        
 
         //Quotes that support the claim
         const quotesSupporting = page.properties["Quotes that support the claim"].relation;
         firstPosition = PositionRange.FIRST;
         lastPosition = Position.createBetween(firstPosition, PositionRange.LAST);
         position = Position.createBetween(firstPosition, lastPosition);
-        //position = INITIAL_RELATION_INDEX_VALUE;
-        let quoteGeoId;
+        let quoteGeoId: string;
         for (const quote of quotesSupporting) { //for each quote
             [addOps, quoteGeoId] = await processQuote([...currentOps, ...ops], quote.id, notion);
             ops.push(...addOps);
 
-            position = Position.createBetween(position, lastPosition);
-            //position = Position.createBetween(position, PositionRange.LAST);
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: quoteGeoId,
-                relationTypeId: GEO_IDS.quotesSupportingPropertyId,
-                position: position,
-            });
-            ops.push(addOps);
+            if (quoteGeoId) {
+                position = Position.createBetween(position, lastPosition);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, quoteGeoId, GEO_IDS.quotesSupportingPropertyId, position);
+                ops.push(...addOps);
+            }
         }
 
         //Related people
@@ -142,45 +98,30 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
         firstPosition = PositionRange.FIRST;
         lastPosition = Position.createBetween(firstPosition, PositionRange.LAST);
         position = Position.createBetween(firstPosition, lastPosition);
-        //position = INITIAL_RELATION_INDEX_VALUE;
-        let relatedPersonGeoId;
+        let relatedPersonGeoId: string;
         for (const person of people) { //for each quote
             relatedPersonGeoId = await processPerson(person.id, notion);
 
             if (relatedPersonGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedPersonGeoId,
-                    relationTypeId: GEO_IDS.relatedPeoplePropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
+                ops.push(...addOps);
             }
         }
-        
 
         //Related projects
         const projects = page.properties["Related projects"].relation;
         firstPosition = PositionRange.FIRST;
         lastPosition = Position.createBetween(firstPosition, PositionRange.LAST);
         position = Position.createBetween(firstPosition, lastPosition);
-        //position = INITIAL_RELATION_INDEX_VALUE;
-        let relatedProjectGeoId;
+        let relatedProjectGeoId: string;
         for (const project of projects) { //for each quote
             relatedProjectGeoId = await processProject(project.id, notion);
 
             if (relatedProjectGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedProjectGeoId,
-                    relationTypeId: GEO_IDS.relatedProjectsPropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                ops.push(...addOps);
             }
         }
 
@@ -189,44 +130,25 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
         firstPosition = PositionRange.FIRST;
         lastPosition = Position.createBetween(firstPosition, PositionRange.LAST);
         position = Position.createBetween(firstPosition, lastPosition);
-        //position = INITIAL_RELATION_INDEX_VALUE;
-        let relatedTopicGeoId;
+        let relatedTopicGeoId: string;
         for (const topic of topics) { //for each quote
             relatedTopicGeoId = await processTopic(topic.id, notion);
 
             if (relatedTopicGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedTopicGeoId,
-                    relationTypeId: SystemIds.RELATED_TOPICS_PROPERTY,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                ops.push(...addOps);
             }
         }
 
-        if (tag_date != "NONE") {
-            addOps = await processTags([...currentOps, ...ops], geoId, tag_date);
-            ops.push(...addOps);
+        if (tag_date != "NONE") { // TODO - NOTE SHOULD REALLY CHECK IF THE RIGHT TAGS ARE THERE FIRST... CANT JUST ASSUME THEY WERE SET RIGHT INITIAILLY
+            if (!entityOnGeo) {
+                addOps = await processTags([...currentOps, ...ops], geoId, tag_date);
+                ops.push(...addOps);
+            }
         }
 
-        // ADD DRAFT TAG
-        //addOps = Relation.make({
-        //    fromId: geoId,
-        //    toId: GEO_IDS.draftTypeId,
-        //    relationTypeId: SystemIds.TYPES_PROPERTY,
-        //});
-        //ops.push(addOps);
-        
         return [ops, geoId];
 
     }
-    
-    //SEARCH FOR AND / OR CREATE THE APPROPRIATE TAGS
-
-
 }
-
-

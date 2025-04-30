@@ -1,9 +1,9 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import { TABLES, getConcatenatedPlainText, GEO_IDS } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps } from "./search_entities";
+import { searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processSource } from "./process_source";
 import { processPerson } from "./process_person";
 import { processProject } from "./process_project";
@@ -29,35 +29,25 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
     
     if (geoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", name, GEO_IDS.quoteTypeId)) { //Search current ops for web url
         return [ops, geoId];
-    } else if (geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.quoteTypeId)) { //Search graphDB for web url
-        console.log("TESTING");
-        return [ops, geoId];
     } else {
-        //WRITE OPS IF NECESSARY
-        geoId = Id.generate();
-        
-        //Write name ops
-        
+
+        geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.quoteTypeId);
+        let entityOnGeo;
+        if (!geoId) {
+            geoId = Id.generate();
+        } else {
+            entityOnGeo = await searchEntity(geoId);
+            console.log("entity exists on geo")
+        }
+
         if (name != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: SystemIds.NAME_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: name,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+            ops.push(...addOps);
         }
 
         // Write Types ops
-        addOps = Relation.make({
-            fromId: geoId,
-            toId: GEO_IDS.quoteTypeId,
-            relationTypeId: SystemIds.TYPES_PROPERTY,
-        });
-        ops.push(addOps);
+        addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.quoteTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+        ops.push(...addOps);
 
         //Sources
         const sources = page.properties["Sources"].relation;
@@ -70,15 +60,12 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
             [addOps, sourceGeoId] = await processSource([...currentOps, ...ops], source.id, notion);
             ops.push(...addOps);
 
-            position = Position.createBetween(position, lastPosition);
-            //position = Position.createBetween(position, PositionRange.LAST);
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: sourceGeoId,
-                relationTypeId: GEO_IDS.sourcesPropertyId,
-                position: position,
-            });
-            ops.push(addOps);
+            if (sourceGeoId) {
+                position = Position.createBetween(position, lastPosition);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, sourceGeoId, GEO_IDS.sourcesPropertyId, position);
+                ops.push(...addOps);
+
+            }
         }
 
         //Authors
@@ -88,12 +75,8 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
             authorGeoId = await processPerson(author.id, notion);
 
             if (authorGeoId) {
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: authorGeoId,
-                    relationTypeId: GEO_IDS.authorsPropertyId,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, authorGeoId, GEO_IDS.authorsPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                ops.push(...addOps);
             }
         }
 
@@ -109,14 +92,8 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
 
             if (relatedPersonGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedPersonGeoId,
-                    relationTypeId: GEO_IDS.relatedPeoplePropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
+                ops.push(...addOps);
             }
         }
 
@@ -132,14 +109,8 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
 
             if (relatedProjectGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedProjectGeoId,
-                    relationTypeId: GEO_IDS.relatedProjectsPropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                ops.push(...addOps);
             }
         }
         
@@ -155,14 +126,8 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
 
             if (relatedTopicGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedTopicGeoId,
-                    relationTypeId: SystemIds.RELATED_TOPICS_PROPERTY,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                ops.push(...addOps);
             }
         }
 

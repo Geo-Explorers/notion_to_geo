@@ -1,14 +1,9 @@
-import { Relation, Triple } from "@graphprotocol/grc-20";
-import { deploySpace } from "./src/deploy-space";
-import { processSource } from "./process_source";
-import { processClaim } from "./process_claim";
-
 import * as fs from "fs";
 import { publish } from "./src/publish";
 import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS } from './src/constants';
 import { processNewsStory } from "./process_news_story";
 
-const { Client } = require("@notionhq/client")
+const { Client } = require("@notionhq/client");
 
 async function updateEditStatus(pageId: string, notion) {
     await notion.pages.update({
@@ -76,7 +71,9 @@ async function main() {
         outputText = JSON.stringify(ops, null, 2);
         // Write to a text file
         fs.writeFileSync(`ops.txt`, outputText);
+    }
 
+    if (true) {
         const iso = new Date().toISOString();
 
         const txHash = await publish({
@@ -90,6 +87,8 @@ async function main() {
         console.log(iso);
         console.log(`Total stories: ${allResults.length}`);
         console.log("Number of ops published: ", ops.length)
+    } else {
+        console.log(ops)
     }
 
     console.log("Updating Story Statues on Notion")

@@ -5,7 +5,7 @@ import { processSource } from "./process_source";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, buildGeoFilter } from './src/constants';
 const { Client } = require("@notionhq/client")
 
-import { searchEntities, searchEntitiesV1, searchDataBlocks, searchGetPublisherAvatar } from "./search_entities";
+import { searchEntities, searchEntitiesV1, searchDataBlocks, searchGetPublisherAvatar, searchEntity } from "./search_entities";
 
 import { format, getWeek, parseISO } from "date-fns";
 
@@ -33,4 +33,9 @@ const notion = new Client({
 
 
 //SPACE: V7xhycK9fAEy7BmpnDGHTq; PROPERTY: LuBWqZAu6pz54eiJS5mLv8; searchText: Blockchain identity solutions and innovations; typeId: Cj7JSjWKbcdgmUjcLWNR4V}
-console.log(await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, "TESTSEARCH", GEO_IDS.claimTypeId))
+//console.log(await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, "TESTSEARCH", GEO_IDS.claimTypeId))
+
+const normalizeUrl = (url: string) =>
+    url.endsWith('/') ? url.slice(0, -1) : url;
+
+console.log(normalizeUrl("https://cryptoslate.com/ethereum-foundation-introduces-new-leadership-model-based-on-management-team-board-of-directors"))

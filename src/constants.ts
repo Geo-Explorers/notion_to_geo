@@ -239,3 +239,115 @@ export function createQueryDataBlock(name: string, fromEntity: string, filter: s
 
   return ops;
 }
+
+
+
+export async function processNewTriple(spaceId: string, entityOnGeo: any, geoId: string, propertyId: string, propertyValue: string, valueType: any, format: string | null = null): Promise<Array<Op>> {
+    let geoPropertyValue;
+    let geoProperties;
+    const ops: Array<Op> = [];
+    let addOps;
+
+    if (entityOnGeo) {
+        geoProperties = entityOnGeo?.triples?.nodes.filter(
+            (item) => 
+                item.spaceId === spaceId &&
+                item.attributeId === propertyId
+        );
+        if (geoProperties.length > 0) { //Note if it is greater than 1, we may be dealing with a multi space entity and I need to make sure I am in the correct space...
+            geoPropertyValue = geoProperties?.[0]?.textValue
+            if (propertyValue != geoPropertyValue) {
+                if (format) {
+                    addOps = Triple.make({
+                        entityId: geoId,
+                        attributeId: propertyId,
+                        value: {
+                            type: valueType,
+                            value: propertyValue,
+                            options: {
+                                format: format,
+                            }
+                        },
+                    });
+                    ops.push(addOps);
+
+                } else {
+                    addOps = Triple.make({
+                        entityId: geoId,
+                        attributeId: propertyId,
+                        value: {
+                            type: valueType,
+                            value: propertyValue,
+                        },
+                    });
+                    ops.push(addOps);
+                }
+                
+            }
+        }
+
+    } else {
+        //Create Entity and set the name
+        if (format) {
+            addOps = Triple.make({
+                entityId: geoId,
+                attributeId: propertyId,
+                value: {
+                    type: valueType,
+                    value: propertyValue,
+                    options: {
+                        format: format,
+                    }
+                },
+            });
+            ops.push(addOps);
+        } else {
+            addOps = Triple.make({
+                entityId: geoId,
+                attributeId: propertyId,
+                value: {
+                    type: valueType,
+                    value: propertyValue,
+                },
+            });
+            ops.push(addOps);
+        }
+    }
+
+    return ops
+}
+
+export async function processNewRelation(spaceId: string, entityOnGeo: any, geoId: string, toEntityId: string, propertyId: string, position?: string): Promise<Array<Op>> {
+    let geoProperties;
+    const ops: Array<Op> = [];
+    let addOps;
+
+    if (entityOnGeo) {
+        geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+            (item) => 
+                item.spaceId === spaceId &&
+                item.typeOfId === propertyId &&
+                item.toEntityId === toEntityId
+        );
+        console.log(geoProperties)
+        if (geoProperties.length == 0) {
+            addOps = Relation.make({
+                fromId: geoId,
+                toId: toEntityId,
+                relationTypeId: propertyId,
+                position: position,
+            });
+            ops.push(addOps);
+        }
+    } else {
+        addOps = Relation.make({
+            fromId: geoId,
+            toId: toEntityId,
+            relationTypeId: propertyId,
+            position: position,
+        });
+        ops.push(addOps);
+    }
+
+    return ops
+}

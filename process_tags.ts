@@ -5,7 +5,7 @@ import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber } from './src/c
 import { searchEntities, searchOps, searchDataBlocks } from "./search_entities";
 
 import { format, getWeek, getQuarter, parseISO } from "date-fns";
-
+//TODO - Update process tags to follow checking if it was created on geo already and updating anything that is needed...
 async function processDate(currentOps, parent_geo_id, tag_date: string): Promise<[Array<Op>, string]> {
     let position;
     let blockOps;

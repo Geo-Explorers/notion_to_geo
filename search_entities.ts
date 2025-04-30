@@ -34,15 +34,31 @@ async function fetchWithRetry(query: string, variables: any, retries = 3, delay 
     }
 }
 
+export const normalizeUrl = (url: string) =>
+    url.endsWith('/') ? url.slice(0, -1) : url;
+
 
 export async function searchOps(ops: Array<Ops>, property: string, propType: string, searchText: string, typeId: string | null = null) {
     
-    const match = ops.find(op =>
-        op.type === "SET_TRIPLE" &&
-        op.triple.attribute === property &&
-        op.triple.value?.type === propType &&
-        op.triple.value?.value === searchText
-    );
+    let match;
+    if (propType == "URL") {
+        match = ops.find(op =>
+            op.type === "SET_TRIPLE" &&
+            op.triple.attribute === property &&
+            op.triple.value?.type === propType &&
+            normalizeUrl(op.triple.value?.value) === normalizeUrl(searchText)
+        );
+    } else {
+        match = ops.find(op =>
+            op.type === "SET_TRIPLE" &&
+            op.triple.attribute === property &&
+            op.triple.value?.type === propType &&
+            op.triple.value?.value === searchText
+        );
+    }
+    
+
+    
 
     if (match) {
         if (typeId) {
@@ -536,3 +552,54 @@ export async function searchGetPublisherAvatar(space: string, typeId: string, fr
     }
 }
 
+
+
+export async function searchEntity(entityId: string) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+    let query;
+    let variables;
+
+    query = `
+        query GetEntity(
+            $entityId: String!
+        ) {
+            entity(id: $entityId) {
+                id
+                name
+                currentVersion {
+                version {
+                    triples {
+                    nodes {
+                        valueType
+                        attributeId
+                        textValue
+                        spaceId
+                    }
+                    }
+                    relationsByFromVersionId {
+                    nodes {
+                        fromEntityId
+                        fromVersionId
+                        toEntityId
+                        typeOfId
+                        spaceId
+                        toEntity {
+                            name
+                        }
+                        entityId
+                    }
+                    }
+                }
+                }
+            }
+        }
+    `;
+
+    variables = {
+        entityId: entityId,
+    };
+
+    const data = await fetchWithRetry(query, variables);
+    
+    return data?.data?.entity?.currentVersion?.version;
+}

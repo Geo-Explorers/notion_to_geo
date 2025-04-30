@@ -1,9 +1,9 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import { TABLES, getConcatenatedPlainText, GEO_IDS, buildGeoFilter, createQueryDataBlock } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, buildGeoFilter, createQueryDataBlock, processNewTriple, processNewRelation } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps, searchGetPublisherAvatar } from "./search_entities";
+import { searchEntities, searchOps, searchGetPublisherAvatar, searchEntity, normalizeUrl } from "./search_entities";
 import { processPerson } from "./process_person";
 import { processPublisher } from "./process_publisher";
 import { processProject } from "./process_project";
@@ -39,11 +39,10 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
     //console.log("Publish date:", publish_date);
 
     //Web URL
-    const web_url = page.properties["Web URL"]?.url ?? "NONE";
-    //console.log("Web URL:", web_url);
-
+    const web_url = normalizeUrl(page.properties["Web URL"]?.url ?? "NONE");
+    
     //Web Archive URL
-    const web_archive_url = page.properties["Web archive URL"]?.url ?? "NONE";
+    const web_archive_url = normalizeUrl(page.properties["Web archive URL"]?.url ?? "NONE");
 
     const sourceType = page.properties["Source Type"]?.select?.name ?? "NONE"
     let typeId = null;
@@ -58,83 +57,43 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
     
     if (geoId = await searchOps(currentOps, GEO_IDS.webURLId, "URL", web_url, typeId)) { //Search current ops for web url
         return [ops, geoId]
-    } else if (geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, GEO_IDS.webURLId, web_url, typeId)) { //Search graphDB for web url
-        return [ops, geoId]
     } else {
-        //WRITE OPS IF NECESSARY
-        geoId = Id.generate();
-        
-        //Write name ops
+        geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, GEO_IDS.webURLId, web_url, typeId);
+        let entityOnGeo;
+        if (!geoId) {
+            geoId = Id.generate();
+        } else {
+            entityOnGeo = await searchEntity(geoId);
+            console.log("entity exists on geo")
+        }
+
         if (name != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: SystemIds.NAME_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: name,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+            ops.push(...addOps);
         }
 
         //Write Description ops
         if (desc != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: SystemIds.DESCRIPTION_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: desc,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
+            ops.push(...addOps);
         }
 
         //Write publish date ops
         if (publish_date != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: GEO_IDS.publishDateId, 
-                value: {
-                    type: "TIME",
-                    value: publish_date,
-                    options: {
-                        format: "MMMM d, yyyy",
-                    }
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.publishDateId, publish_date, "TIME", "MMMM d, yyyy");
+            ops.push(...addOps);
         }
         
         //Write web URL ops
         if (web_url != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: GEO_IDS.webURLId,
-                value: {
-                    type: "URL",
-                    value: web_url,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.webURLId, web_url, "URL");
+            ops.push(...addOps);
         }
 
         //Write web Archive URL ops
         if (web_archive_url != "NONE") {
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: geoId,
-                attributeId: GEO_IDS.webArchiveURLId,
-                value: {
-                    type: "URL",
-                    value: web_archive_url,
-                },
-            });
-            ops.push(addOps);
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.webArchiveURLId, web_archive_url, "URL");
+            ops.push(...addOps);
         }
 
 
@@ -146,8 +105,22 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
               { attribute: GEO_IDS.sourcesPropertyId, is: geoId }
             ]
         );
-        addOps = createQueryDataBlock("Highlighed quotes", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, undefined);
-        ops.push(...addOps);
+        if (entityOnGeo) {
+            const blocksOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                (item) => 
+                    item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                    item.typeOfId === SystemIds.BLOCKS &&
+                    item.toEntity.name === "Highlighed quotes"
+            );
+            if (blocksOnEntity.length < 1) {
+                addOps = createQueryDataBlock("Highlighed quotes", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, undefined);
+                ops.push(...addOps);
+            }
+        } else {
+            addOps = createQueryDataBlock("Highlighed quotes", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, undefined);
+            ops.push(...addOps);
+        }
+        
 
 
         //Publisher
@@ -158,27 +131,24 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
             publisherGeoId = await processPublisher(publisher.id, notion);
 
             if (publisherGeoId) {
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: publisherGeoId,
-                    relationTypeId: GEO_IDS.publisherPropertyId,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, publisherGeoId, GEO_IDS.publisherPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                ops.push(...addOps);
 
-                publisherAvater = await searchGetPublisherAvatar(GEO_IDS.cryptoSpaceId, GEO_IDS.avatarPropertyId, publisherGeoId)
+                //TODO - What if publisher isnt on geo yet? Need to search ops as well... NOTE THESE WOULD BE THE CRYPTO SPACE OPS
+                publisherAvater = await searchGetPublisherAvatar(GEO_IDS.cryptoSpaceId, GEO_IDS.avatarPropertyId, publisherGeoId);
+                //if (!publisherAvater) {
+                    //Search crypto space Ops for image id
+                //}
             }
         }
 
-        //TODO - Change to pull the avatar from the publisher
+        //TODO - CHECK IF THERE IS ALREADY AN AVATAR...
+        //Also, what if I created tbe 
         //Write avatar ops
         if (publisherAvater) {
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: publisherAvater,
-                relationTypeId: GEO_IDS.avatarPropertyId, //AVATAR_PROPERTY 
-            });
-            ops.push(addOps);
-        } else if (avatar_url != "NONE") {
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, publisherAvater, GEO_IDS.avatarPropertyId, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
+        } else if ((avatar_url != "NONE") && (!entityOnGeo)) { // THIS NEEDS TO BE MORE DYNAMIC
             // create an image
             const { id: imageId, ops: createImageOps } = await Graph.createImage({
                 url: avatar_url,
@@ -195,19 +165,11 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
         }
         // Write Types ops
         if (typeId) {
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: typeId,
-                relationTypeId: SystemIds.TYPES_PROPERTY,
-            });
-            ops.push(addOps);
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, typeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
         } else {
-            addOps = Relation.make({
-                fromId: geoId,
-                toId: GEO_IDS.articleTypeId,
-                relationTypeId: SystemIds.TYPES_PROPERTY,
-            });
-            ops.push(addOps);
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.articleTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
         }
 
         // TODO - Add related projects
@@ -218,12 +180,8 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
             authorGeoId = await processPerson(author.id, notion);
 
             if (authorGeoId) {
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: authorGeoId,
-                    relationTypeId: GEO_IDS.authorsPropertyId,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, authorGeoId, GEO_IDS.authorsPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                ops.push(...addOps);
             }
         }
 
@@ -239,14 +197,8 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
 
             if (relatedPersonGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedPersonGeoId,
-                    relationTypeId: GEO_IDS.relatedPeoplePropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
+                ops.push(...addOps);
             }
         }
 
@@ -262,14 +214,8 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
 
             if (relatedProjectGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedProjectGeoId,
-                    relationTypeId: GEO_IDS.relatedProjectsPropertyId,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                ops.push(...addOps);
             }
         }
 
@@ -285,14 +231,8 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
 
             if (relatedTopicGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                //position = Position.createBetween(position, PositionRange.LAST);
-                addOps = Relation.make({
-                    fromId: geoId,
-                    toId: relatedTopicGeoId,
-                    relationTypeId: SystemIds.RELATED_TOPICS_PROPERTY,
-                    position: position,
-                });
-                ops.push(addOps);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                ops.push(...addOps);
             }
         }
 

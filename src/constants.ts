@@ -243,6 +243,7 @@ export function createQueryDataBlock(name: string, fromEntity: string, filter: s
 
 
 export async function processNewTriple(spaceId: string, entityOnGeo: any, geoId: string, propertyId: string, propertyValue: string, valueType: any, format: string | null = null): Promise<Array<Op>> {
+    //WHEN I PROCESS A NEW RELATION OR TRIPLE, I SHOULD SEND THE OPS AND MAKE SURE THAT I AM NOT RECREATING ANYTHING THAT I SHOULDNT...
     let geoPropertyValue;
     let geoProperties;
     const ops: Array<Op> = [];
@@ -329,7 +330,7 @@ export async function processNewRelation(spaceId: string, entityOnGeo: any, geoI
                 item.typeOfId === propertyId &&
                 item.toEntityId === toEntityId
         );
-        console.log(geoProperties)
+        //console.log(geoProperties)
         if (geoProperties.length == 0) {
             addOps = Relation.make({
                 fromId: geoId,

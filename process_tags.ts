@@ -1,12 +1,18 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber } from './src/constants';
-import { searchEntities, searchOps, searchDataBlocks } from "./search_entities";
+import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock } from './src/constants';
+import { searchEntities, searchOps, searchDataBlocks, searchEntity, hasBeenEdited } from "./search_entities";
 
 import { format, getWeek, getQuarter, parseISO } from "date-fns";
+import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
+
+
+
+
+
 //TODO - Update process tags to follow checking if it was created on geo already and updating anything that is needed...
-async function processDate(currentOps, parent_geo_id, tag_date: string): Promise<[Array<Op>, string]> {
+async function processDate(currentOps, tag_date: string): Promise<[Array<Op>, string]> {
     let position;
     let blockOps;
     let blockId;
@@ -39,88 +45,62 @@ async function processDate(currentOps, parent_geo_id, tag_date: string): Promise
     let dateGeoId: string;
     if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedDate)) { //Search current ops for web url
         dateGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedDate)
-    } else if (await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedDate, GEO_IDS.tagTypeId)) { //Search graphDB for web url
-        dateGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedDate, GEO_IDS.tagTypeId)
     } else {
-        dateGeoId = Id.generate();
+        dateGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedDate, GEO_IDS.tagTypeId);
+        let entityOnGeo;
+        if (!dateGeoId) {
+            dateGeoId = Id.generate();
+        } else {
+            entityOnGeo = await searchEntity(dateGeoId);
+            console.log("entity exists on geo")
+        }
 
-        //Create Entity and set the name
-        addOps = Triple.make({
-            entityId: dateGeoId,
-            attributeId: SystemIds.NAME_PROPERTY,
-            value: {
-                type: "TEXT",
-                value: formattedDate,
-            },
-        });
-        ops.push(addOps);
+        if (await hasBeenEdited(currentOps, dateGeoId)) {
+            return [ops, dateGeoId]
+        } else {
+            if (formattedDate) {
+                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, dateGeoId, SystemIds.NAME_PROPERTY, formattedDate, "TEXT");
+                ops.push(...addOps);
+            }
+    
+            //ADD TAG TYPE TO NEW DATE TAG ENTITY
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, dateGeoId, GEO_IDS.tagTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
+    
+            //Add quotes data block to source page
+            const filter = buildGeoFilter(
+                [GEO_IDS.cryptoNewsSpaceId],
+                [
+                    { attribute: SystemIds.TYPES_PROPERTY, is: GEO_IDS.newsStoryTypeId },
+                    { attribute: GEO_IDS.tagsPropertyId, is: dateGeoId }
+                ]
+            );
+            if (entityOnGeo) {
+                const blocksOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                    (item) => 
+                        item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                        item.typeOfId === SystemIds.BLOCKS &&
+                        item.toEntity.name === longFormattedDate
+                );
+                if (blocksOnEntity.length < 1) {
+                    addOps = createQueryDataBlock(longFormattedDate, dateGeoId, filter, SystemIds.LIST_VIEW, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                    ops.push(...addOps);
+                }
+            } else {
+                addOps = createQueryDataBlock(longFormattedDate, dateGeoId, filter, SystemIds.LIST_VIEW, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                ops.push(...addOps);
+            }
+    
+        }
+    
+        return [ops, dateGeoId]
 
-        //ADD TAG TYPE TO NEW DATE TAG ENTITY
-        addOps = Relation.make({
-            fromId: dateGeoId,
-            toId: GEO_IDS.tagTypeId,
-            relationTypeId: SystemIds.TYPES_PROPERTY,
-        });
-        ops.push(addOps);
-
-        //ADD A TABLE FOR NEWS STORIES FOR DATE
-        //CREATE THE DATA BLOCK
-        position = Position.createBetween();
-        blockOps = DataBlock.make({
-            fromId: dateGeoId,
-            sourceType: 'QUERY',
-            name: longFormattedDate,
-            position: position,
-        });
-        ops.push(...blockOps);
-    
-        //console.log(blockOps)
-        blockId = blockOps[2].relation.toEntity;
-        blockRelationId = blockOps[2].relation.id;
-    
-        filter = `{"where":{"spaces":["${GEO_IDS.cryptoNewsSpaceId}"],"AND":[{"attribute":"${SystemIds.TYPES_PROPERTY}","is":"${GEO_IDS.newsStoryTypeId}"},{"attribute":"${GEO_IDS.tagsPropertyId}","is":"${dateGeoId}"}]}}`
-        addOps = Triple.make({
-            entityId: blockId,
-            attributeId: SystemIds.FILTER,
-            value: {
-                type: "TEXT",
-                value: filter,
-            },
-        });
-    
-        ops.push(addOps);
-    
-        //Set view to TABLE_VIEW -- for list view use SystemIds.LIST_VIEW
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: SystemIds.LIST_VIEW,
-            relationTypeId: SystemIds.VIEW_PROPERTY,
-        });
-        ops.push(addOps);
-
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: GEO_IDS.publishDateId,
-            relationTypeId: SystemIds.PROPERTIES,
-        });
-        ops.push(addOps);
     }
-
-    if (dateGeoId) {
-        //ADD DATE TAG TO PARENT ENTITY
-        addOps = Relation.make({
-            fromId: parent_geo_id,
-            toId: dateGeoId,
-            relationTypeId: GEO_IDS.tagsPropertyId,
-        });
-        ops.push(addOps);
-    }
-
-    return [ops, dateGeoId]
+             
 }
 
 
-async function processWeek(currentOps, parent_geo_id, tag_date: string, dateGeoId): Promise<[Array<Op>, string]> {
+async function processWeek(currentOps, tag_date: string, dateGeoId): Promise<[Array<Op>, string]> {
     let position;
     let blockOps;
     let blockId;
@@ -132,7 +112,7 @@ async function processWeek(currentOps, parent_geo_id, tag_date: string, dateGeoI
     const date = parseISO(tag_date); // or new Date(2025, 0, 9) if manually
     
     // 1. Long formatted date: "Thursday, January 9, 2025"
-    const longFormattedDate = format(date, "EEEE, MMMM d, yyyy");
+    const longFormattedDate = format(date, "EEEE, MMMM d");
     
     // 2. Short formatted date: "01/09/2025"
     const formattedDate = format(date, "MM/dd/yyyy");
@@ -157,180 +137,162 @@ async function processWeek(currentOps, parent_geo_id, tag_date: string, dateGeoI
     let weekGeoId: string;
     if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedWeek)) { //Search current ops for web url
         weekGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedWeek)
-    } else if (await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedWeek, GEO_IDS.tagTypeId)) { //Search graphDB for web url
-        weekGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedWeek, GEO_IDS.tagTypeId)
     } else {
-        weekGeoId = Id.generate();
-
-        //Create Entity and set the name
-        addOps = Triple.make({
-            entityId: weekGeoId,
-            attributeId: SystemIds.NAME_PROPERTY,
-            value: {
-                type: "TEXT",
-                value: formattedWeek,
-            },
-        });
-        ops.push(addOps);
-
-        //ADD TAG TYPE TO NEW WEEK TAG ENTITY
-        addOps = Relation.make({
-            fromId: weekGeoId,
-            toId: GEO_IDS.tagTypeId,
-            relationTypeId: SystemIds.TYPES_PROPERTY,
-        });
-        ops.push(addOps);
-
-        //Add quarter tag
-
-        let quarterGeoId;
-        if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedQuarter)) { //Search current ops for web url
-            quarterGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedQuarter)
-        } else if (await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedQuarter, GEO_IDS.tagTypeId)) { //Search graphDB for web url
-            quarterGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedQuarter, GEO_IDS.tagTypeId)
+        weekGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedWeek, GEO_IDS.tagTypeId)
+        //ONCE I FIND THE ENTITIES GEO ID, THEN I CAN SEARCH THE OPS FOR THE VARIOUS THINGS...
+        let entityOnGeo;
+        if (!weekGeoId) {
+            weekGeoId = Id.generate();
         } else {
-            quarterGeoId = Id.generate();
-
-            //Create Entity and set the name
-            addOps = Triple.make({
-                entityId: quarterGeoId,
-                attributeId: SystemIds.NAME_PROPERTY,
-                value: {
-                    type: "TEXT",
-                    value: formattedQuarter,
-                },
-            });
-            ops.push(addOps);
-
-            //ADD TAG TYPE TO NEW WEEK TAG ENTITY
-            addOps = Relation.make({
-                fromId: quarterGeoId,
-                toId: GEO_IDS.tagTypeId,
-                relationTypeId: SystemIds.TYPES_PROPERTY,
-            });
-            ops.push(addOps);
-        }
-        if (quarterGeoId) {
-            //ADD Quarter TAG TO Week ENTITY
-            addOps = Relation.make({
-                fromId: weekGeoId,
-                toId: quarterGeoId,
-                relationTypeId: GEO_IDS.tagsPropertyId,
-            });
-            ops.push(addOps);
+            entityOnGeo = await searchEntity(weekGeoId);
+            console.log("entity exists on geo")
         }
 
-        
+        if (await hasBeenEdited(currentOps, weekGeoId)) {
+            return [ops, weekGeoId]
+        } else {
 
 
-        //CREATE TOP NEWS STORIES THE DATA BLOCK
-        blockOps = DataBlock.make({
-            fromId: weekGeoId,
-            sourceType: 'QUERY',
-            name: "News stories of the week",
-            position: "1RQgZNIZ.A",
-        });
-        ops.push(...blockOps);
-    
-        //console.log(blockOps)
-        blockId = blockOps[2].relation.toEntity;
-        blockRelationId = blockOps[2].relation.id;
+            if (formattedWeek) {
+                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, weekGeoId, SystemIds.NAME_PROPERTY, formattedWeek, "TEXT");
+                ops.push(...addOps);
+            }
 
-        filter = `{"where":{"spaces":["${GEO_IDS.cryptoNewsSpaceId}"],"AND":[{"attribute":"${SystemIds.TYPES_PROPERTY}","is":"${GEO_IDS.newsStoryTypeId}"}, {"attribute":"${GEO_IDS.tagsPropertyId}","is":"${GEO_IDS.newsStoryOfTheWeekTagId}"}, {"attribute":"${GEO_IDS.tagsPropertyId}","is":"${weekGeoId}"}]}}`
-        addOps = Triple.make({
-            entityId: blockId,
-            attributeId: SystemIds.FILTER,
-            value: {
-                type: "TEXT",
-                value: filter,
-            },
-        });
-    
-        ops.push(addOps);
-    
-        //Set view to TABLE_VIEW -- for list view use SystemIds.LIST_VIEW
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: SystemIds.GALLERY_VIEW,
-            relationTypeId: SystemIds.VIEW_PROPERTY,
-        });
-        ops.push(addOps);
+            //ADD TAG TYPE TO NEW DATE TAG ENTITY
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, weekGeoId, GEO_IDS.tagTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
 
-
-        //CREATE Previous weeks THE DATA BLOCK
-        blockOps = DataBlock.make({
-            fromId: weekGeoId,
-            sourceType: 'COLLECTION',
-            name: "Previous news stories",
-            position: "1RQgZNIZ.Z",
-        });
-        ops.push(...blockOps);
-    
-        //console.log(blockOps)
-        blockId = blockOps[2].relation.toEntity;
-        blockRelationId = blockOps[2].relation.id;
-
-        let formattedPastWeek;
-        for (let i = 1; i < 4; i++) {
-            if ((weekNumber - i) < 1) {
-                formattedPastWeek = `Week ${52 - (weekNumber-i)} of ${date.getFullYear() - 1}`;
-            } else if ((weekNumber - i) < 10) {
-                formattedPastWeek = `Week 0${weekNumber-i} of ${date.getFullYear()}`;
+            //CREATE TOP NEWS STORIES THE DATA BLOCK
+            let filter = buildGeoFilter(
+                [GEO_IDS.cryptoNewsSpaceId],
+                [
+                    { attribute: SystemIds.TYPES_PROPERTY, is: GEO_IDS.newsStoryTypeId },
+                    { attribute: GEO_IDS.tagsPropertyId, is: GEO_IDS.newsStoryOfTheWeekTagId },
+                    { attribute: GEO_IDS.tagsPropertyId, is: weekGeoId }
+                ]
+            );
+            
+            if (entityOnGeo) {
+                const blocksOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                    (item) => 
+                        item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                        item.typeOfId === SystemIds.BLOCKS &&
+                        item.toEntity.name === "News stories of the week"
+                );
+                if (blocksOnEntity.length < 1) {
+                    addOps = createQueryDataBlock("News stories of the week", weekGeoId, filter, SystemIds.GALLERY_VIEW, "1RQgZNIZ.A", undefined);
+                    ops.push(...addOps);
+                }
             } else {
-                formattedPastWeek = `Week ${weekNumber-i} of ${date.getFullYear()}`;
+                addOps = createQueryDataBlock("News stories of the week", weekGeoId, filter, SystemIds.GALLERY_VIEW, "1RQgZNIZ.A", undefined);
+                ops.push(...addOps);
             }
 
-            let pastWeekGeoId = null;
-            if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedPastWeek)) { //Search current ops for web url
-                pastWeekGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedPastWeek)
-            } else if (await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedPastWeek, GEO_IDS.tagTypeId)) { //Search graphDB for web url
-                pastWeekGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedPastWeek, GEO_IDS.tagTypeId)
-            }
 
-            if (pastWeekGeoId) {
-                position = Position.createBetween();
-                addOps = Relation.make({
-                    fromId: blockId,
-                    toId: pastWeekGeoId,
-                    relationTypeId: SystemIds.COLLECTION_ITEM_RELATION_TYPE,
-                    position: position,
+
+
+            let blockId;
+            let blockRelationId;
+            let collectionEntityOnGeo;
+            let relationEntityOnGeo;
+            if (entityOnGeo) {
+                const collectionsOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                    (item) => 
+                        item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                        item.typeOfId === SystemIds.BLOCKS &&
+                        item.toEntity.name === "Previous news stories"
+                );
+                if (collectionsOnEntity.length > 0) {
+                    blockId = collectionsOnEntity?.[0]?.toEntityId;
+                    blockRelationId = collectionsOnEntity?.[0]?.entityId;
+                    collectionEntityOnGeo = await searchEntity(blockId);
+                    relationEntityOnGeo = await searchEntity(blockRelationId);
+                }
+            }
+            if (!collectionEntityOnGeo) {
+                //CREATE THE DATA BLOCK
+                let blockOps = DataBlock.make({
+                    fromId: weekGeoId,
+                    sourceType: 'COLLECTION',
+                    name: "Previous news stories",
+                    position: "1RQgZNIZ.Z",
                 });
-                ops.push(addOps);
+                ops.push(...blockOps);
+        
+                //console.log(blockOps)
+                blockId = blockOps[2].relation.toEntity;
+                blockRelationId = blockOps[2].relation.id;
+            }
+        
+            let formattedPastWeek;
+            for (let i = 1; i < 4; i++) {
+                if ((weekNumber - i) < 1) {
+                    formattedPastWeek = `Week ${52 - (weekNumber-i)} of ${date.getFullYear() - 1}`;
+                } else if ((weekNumber - i) < 10) {
+                    formattedPastWeek = `Week 0${weekNumber-i} of ${date.getFullYear()}`;
+                } else {
+                    formattedPastWeek = `Week ${weekNumber-i} of ${date.getFullYear()}`;
+                }
+                console.log("FORMATTED PAST WEEK: ", formattedPastWeek)
+
+                let pastWeekGeoId = null;
+                if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedPastWeek)) { //Search current ops for web url
+                    pastWeekGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedPastWeek)
+                } else if (await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedPastWeek, GEO_IDS.tagTypeId)) { //Search graphDB for web url
+                    pastWeekGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedPastWeek, GEO_IDS.tagTypeId)
+                }
+
+                console.log("FORMATTED PAST WEEK GEO ID: ", pastWeekGeoId)
+
+                if (pastWeekGeoId) {
+                    position = Position.createBetween();
+                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, collectionEntityOnGeo, blockId, pastWeekGeoId, SystemIds.COLLECTION_ITEM_RELATION_TYPE, position);
+                    ops.push(...addOps);
+                }
+            }
+        
+            //Add appropriate filter
+            filter = `{"where":{"AND":[{"attribute":"${SystemIds.TYPES_PROPERTY}","is":"${GEO_IDS.tagTypeId}"}]}}`
+            addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, collectionEntityOnGeo, blockId, SystemIds.FILTER, filter, "TEXT");
+            ops.push(...addOps);
+        
+            //Make it a bulleted list
+            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, relationEntityOnGeo, blockRelationId, SystemIds.GALLERY_VIEW, SystemIds.VIEW_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            ops.push(...addOps);
+
+
+            //Add quarter tag
+            let quarterGeoId;
+            if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedQuarter)) { //Search current ops for web url
+                quarterGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedQuarter)
+            } else {
+                quarterGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedQuarter, GEO_IDS.tagTypeId)
+                let quarterEntityOnGeo;
+                if (!quarterGeoId) {
+                    quarterGeoId = Id.generate();
+                } else {
+                    quarterEntityOnGeo = await searchEntity(quarterGeoId);
+                    console.log("entity exists on geo")
+                }
+
+                if (formattedQuarter) {
+                    addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, quarterEntityOnGeo, quarterGeoId, SystemIds.NAME_PROPERTY, formattedQuarter, "TEXT");
+                    ops.push(...addOps);
+                }
+
+                //ADD TAG TYPE TO NEW DATE TAG ENTITY
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, quarterEntityOnGeo, quarterGeoId, GEO_IDS.tagTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+                ops.push(...addOps);
+            }
+            if (quarterGeoId) {
+                //ADD Quarter TAG TO Week ENTITY
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, weekGeoId, quarterGeoId, GEO_IDS.tagsPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                ops.push(...addOps);
             }
         }
-    
-        filter = `{"where":{"AND":[{"attribute":"${SystemIds.TYPES_PROPERTY}","is":"${GEO_IDS.tagTypeId}"}]}}`
-        addOps = Triple.make({
-            entityId: blockId,
-            attributeId: SystemIds.FILTER,
-            value: {
-                type: "TEXT",
-                value: filter,
-            },
-        });
-    
-        ops.push(addOps);
-    
-        //Set view to TABLE_VIEW -- for list view use SystemIds.LIST_VIEW
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: SystemIds.GALLERY_VIEW,
-            relationTypeId: SystemIds.VIEW_PROPERTY,
-        });
-        ops.push(addOps);
 
 
 
-    }
-
-    if (weekGeoId) {
-        //ADD WEEK TAG TO PARENT ENTITY
-        addOps = Relation.make({
-            fromId: parent_geo_id,
-            toId: weekGeoId,
-            relationTypeId: GEO_IDS.tagsPropertyId,
-        });
-        ops.push(addOps);
     }
 
     //DOES DATE TABLE ALREADY EXIST?
@@ -361,51 +323,24 @@ async function processWeek(currentOps, parent_geo_id, tag_date: string, dateGeoI
         } else if (date.toLocaleDateString("en-US", {weekday: "long"}) == "Saturday") { 
             position = "1RQgZNIZ.D";
         }
-        //CREATE THE DATA BLOCK
-        blockOps = DataBlock.make({
-            fromId: weekGeoId,
-            sourceType: 'QUERY',
-            name: longFormattedDate,
-            position: position,
-        });
-        ops.push(...blockOps);
-    
-        //console.log(blockOps)
-        blockId = blockOps[2].relation.toEntity;
-        blockRelationId = blockOps[2].relation.id;
-    
-        filter = `{"where":{"spaces":["${GEO_IDS.cryptoNewsSpaceId}"],"AND":[{"attribute":"${SystemIds.TYPES_PROPERTY}","is":"${GEO_IDS.newsStoryTypeId}"},{"attribute":"${GEO_IDS.tagsPropertyId}","is":"${dateGeoId}"}]}}`
-        addOps = Triple.make({
-            entityId: blockId,
-            attributeId: SystemIds.FILTER,
-            value: {
-                type: "TEXT",
-                value: filter,
-            },
-        });
-    
-        ops.push(addOps);
-    
-        //Set view to TABLE_VIEW -- for list view use SystemIds.LIST_VIEW
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: SystemIds.LIST_VIEW,
-            relationTypeId: SystemIds.VIEW_PROPERTY,
-        });
-        ops.push(addOps);
 
-        addOps = Relation.make({
-            fromId: blockRelationId,
-            toId: GEO_IDS.publishDateId,
-            relationTypeId: SystemIds.PROPERTIES,
-        });
-        ops.push(addOps);
+        let filter = buildGeoFilter(
+            [GEO_IDS.cryptoNewsSpaceId],
+            [
+                { attribute: SystemIds.TYPES_PROPERTY, is: GEO_IDS.newsStoryTypeId },
+                { attribute: GEO_IDS.tagsPropertyId, is: dateGeoId }
+            ]
+        );
+        addOps = createQueryDataBlock(longFormattedDate, weekGeoId, filter, SystemIds.LIST_VIEW, position, [GEO_IDS.relatedProjectsPropertyId]);
+        ops.push(...addOps);
+
     }
 
     return [ops, weekGeoId]
 }
 
-export async function processTags(currentOps, parent_geo_id, tag_date: string): Promise<Array<Op>> {
+
+export async function processTags(currentOps, tag_date: string): Promise<[Array<Op>, string, string]> {
 //I SEND DATE IN HERE AND MANAGE IT IN HERE INSTEAD OF SENDING THE TAG STRING
 //THEN FROM THAT DATE, I will know if I need to create a new data block in the week of tag
 //I ALSO NEED TO ADD THE QX YYYY tag to the week of page.
@@ -416,14 +351,17 @@ export async function processTags(currentOps, parent_geo_id, tag_date: string): 
     console.log("TAG DATE STRING: ", tag_date)
 
     let dateGeoId: string;
-    [addOps, dateGeoId] = await processDate(currentOps, parent_geo_id, tag_date);
+    [addOps, dateGeoId] = await processDate(currentOps, tag_date);
     ops.push(...addOps)
 
     let weekGeoId: string;
-    [addOps, weekGeoId] = await processWeek(currentOps, parent_geo_id, tag_date, dateGeoId);
+    [addOps, weekGeoId] = await processWeek(currentOps, tag_date, dateGeoId);
     ops.push(...addOps)
 
-    return ops
+    return [ops, dateGeoId, weekGeoId];
 }
+
+
+
 
 

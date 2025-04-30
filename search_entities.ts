@@ -53,7 +53,7 @@ export async function searchOps(ops: Array<Ops>, property: string, propType: str
             op.type === "SET_TRIPLE" &&
             op.triple.attribute === property &&
             op.triple.value?.type === propType &&
-            op.triple.value?.value === searchText
+            op.triple.value?.value?.toLowerCase() === searchText?.toLowerCase()
         );
     }
     
@@ -79,6 +79,30 @@ export async function searchOps(ops: Array<Ops>, property: string, propType: str
         }
     } else {
         return null
+    }
+}
+
+export async function hasBeenEdited(ops: Array<Ops>, entityId: string): Promise<boolean> {
+    
+    let match;
+    match = ops.find(op =>
+        op.type === "SET_TRIPLE" &&
+        op.triple.entity === entityId
+    );
+
+    if (match) {
+        return true;
+    }
+
+    match = ops.find(op =>
+        op.type === "CREATE_RELATION" &&
+        op.relation.fromEntity === entityId
+    );
+
+    if (match) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -255,7 +279,7 @@ export async function searchDataBlocks(space: string, typeId: string, fromEntity
                         }
                     }
                         toEntity: {
-                            name: { equalToInsensitive: $dateString }
+                            name: { includesInsensitive: $dateString }
                         }
                     }
                 ) {

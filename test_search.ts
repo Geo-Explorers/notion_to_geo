@@ -11,6 +11,9 @@ import { format, getWeek, parseISO } from "date-fns";
 
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, PositionRange, Graph, Position} from "@graphprotocol/grc-20";
 import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
+import { processNewsStory } from "./process_news_story";
+
+import * as fs from "fs";
 
 
 
@@ -34,8 +37,14 @@ const notion = new Client({
 
 //SPACE: V7xhycK9fAEy7BmpnDGHTq; PROPERTY: LuBWqZAu6pz54eiJS5mLv8; searchText: Blockchain identity solutions and innovations; typeId: Cj7JSjWKbcdgmUjcLWNR4V}
 //console.log(await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, "TESTSEARCH", GEO_IDS.claimTypeId))
+geoId = "UqdUEC7XntQS7h4VFWaRo3";
+let spaceId = "BDuZwkjCg3nPWMDshoYtpS";
+let entityOnGeo = await searchEntity(geoId);
 
-const normalizeUrl = (url: string) =>
-    url.endsWith('/') ? url.slice(0, -1) : url;
+let geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+    (item) => 
+        item.spaceId === spaceId &&
+        item.typeOfId === SystemIds.COVER_PROPERTY
+);
 
-console.log(normalizeUrl("https://cryptoslate.com/ethereum-foundation-introduces-new-leadership-model-based-on-management-team-board-of-directors"))
+console.log(geoProperties)

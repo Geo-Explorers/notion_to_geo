@@ -228,11 +228,16 @@ export async function processNewsStory(currentOps: Array<Op>, storyId: string, n
 
             //Write cover ops
             if (cover_url != "NONE") {
-                let geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
-                    (item) => 
-                        item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
-                        item.typeOfId === SystemIds.COVER_PROPERTY
-                );
+                let geoProperties
+                if (entityOnGeo) {
+                    geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                        (item) => 
+                            item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                            item.typeOfId === SystemIds.COVER_PROPERTY
+                    );
+                } else {
+                    geoProperties = [];
+                }
 
                 if (geoProperties.length < 1) {
                     // create an image

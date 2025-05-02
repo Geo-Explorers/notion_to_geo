@@ -217,24 +217,6 @@ export async function searchEntities(space: string, property: string, searchText
     }
 
     const data = await fetchWithRetry(query, variables);
-
-    //const response = await fetch(QUERY_URL, {
-    //  method: "POST",
-    //  headers: {
-    //    "Content-Type": "application/json",
-    //  },
-    //  body: JSON.stringify({
-    //    query,
-    //    variables
-    //  }),
-    //});
-  
-    //if (!response.ok) {
-    //  console.log("searchEntities");
-    //  console.log(`SPACE: ${space}; PROPERTY: ${property}; searchText: ${searchText}; typeId: ${typeId}`);
-    //  throw new Error(`HTTP error! Status: ${response.status}`);
-    //}
-    //const data = await response.json();
     
     if (data?.data?.entities?.nodes.length == 1) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
         return data?.data?.entities?.nodes?.[0]?.id;
@@ -627,3 +609,160 @@ export async function searchEntity(entityId: string) {
     
     return data?.data?.entity?.currentVersion?.version;
 }
+
+
+export async function searchArticles(space: string, toEntity: string, typeOfId: string) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+    let query;
+    let variables;
+
+    query = `
+        query GetEntities(
+            $space: String!
+            $toEntity: String!
+            $typeOfId: String!
+            $typesPropertyId: String!
+        ) {
+            entities(
+            filter: {
+                currentVersion: {
+                    version: {
+                        versionSpaces: {
+                            some: { spaceId: { equalTo: $space } }
+                        }
+                    }
+                }
+                relationsByFromEntityId: {
+                    some: {
+                        toEntityId: { equalTo: $toEntity }
+                        typeOfId: { equalTo: $typeOfId }
+                        fromEntity: {
+                        relationsByFromEntityId: {
+                            some: {
+                                toEntityId: { equalTo: "M5uDP7nCw3nvfQPUryn9gx" }
+                                typeOfId: { equalTo: $typesPropertyId }
+                            }
+                        }
+                    }
+                    }
+                }
+            }
+            ) {
+            nodes {
+                id
+                name
+            }
+            }
+        }
+    `;
+
+    variables = {
+        space: space,
+        toEntity: toEntity,
+        typeOfId: typeOfId,
+        typesPropertyId: SystemIds.TYPES_PROPERTY
+    };
+
+    const data = await fetchWithRetry(query, variables);
+    
+    if (data?.data?.entities?.nodes.length > 0) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
+        return true;
+    } else {
+        return false
+    }
+}
+
+
+export async function searchUniquePublishers(space: string, toEntity: string, typeOfId: string) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+    let query;
+    let variables;
+
+    query = `
+        query GetEntities(
+            $space: String!
+            $toEntity: String!
+            $typeOfId: String!
+            $typesPropertyId: String!
+        ) {
+            entities(
+            filter: {
+                currentVersion: {
+                    version: {
+                        versionSpaces: {
+                            some: { spaceId: { equalTo: $space } }
+                        }
+                    }
+                }
+                relationsByFromEntityId: {
+                    some: {
+                        toEntityId: { equalTo: $toEntity }
+                        typeOfId: { equalTo: $typeOfId }
+                        fromEntity: {
+                        relationsByFromEntityId: {
+                            some: {
+                                toEntityId: { equalTo: "M5uDP7nCw3nvfQPUryn9gx" }
+                                typeOfId: { equalTo: $typesPropertyId }
+                            }
+                        }
+                    }
+                    }
+                }
+            }
+            ) {
+            nodes {
+                id
+                name
+                relationsByFromEntityId(
+                    filter: {
+                    fromVersion: {
+                        currentVersions: {
+                        some: {
+                            entity: {
+                            relationsByFromEntityId: {
+                                some: { typeOfId: { equalTo: "Lc4JrkpMUPhNstqs7mvnc5" } }
+                            }
+                            }
+                        }
+                        }
+                    }
+                    }
+                    condition: { typeOfId: "Lc4JrkpMUPhNstqs7mvnc5" }
+                ) {
+                    nodes {
+                    typeOfId
+                    toEntityId
+                    }
+                }
+                }
+            }
+        }
+
+    `;
+
+    variables = {
+        space: space,
+        toEntity: toEntity,
+        typeOfId: typeOfId,
+        typesPropertyId: SystemIds.TYPES_PROPERTY
+    };
+
+    const data = await fetchWithRetry(query, variables);
+    
+    if (data?.data?.entities?.nodes.length > 0) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
+
+        const uniqueToEntityIds = [
+            ...new Set(
+                data?.data?.entities?.nodes?.flatMap(item =>
+                item.relationsByFromEntityId?.nodes?.map(rel => rel.toEntityId) || []
+            )
+            )
+        ];
+
+        return uniqueToEntityIds;
+    } else {
+        return null;
+    }
+}
+
+

@@ -132,7 +132,7 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
             const publishers = page.properties["Publisher"].relation;
             let publisherGeoId;
             for (const publisher of publishers) { //for each quote
-                publisherGeoId = await processPublisher(publisher.id, notion);
+                publisherGeoId = await processProject(publisher.id, notion);
 
                 if (publisherGeoId) {
                     addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, publisherGeoId, GEO_IDS.publisherPropertyId, INITIAL_RELATION_INDEX_VALUE);
@@ -153,11 +153,16 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
                 addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, publisherAvater, GEO_IDS.avatarPropertyId, INITIAL_RELATION_INDEX_VALUE);
                 ops.push(...addOps);
             } else if (avatar_url != "NONE") {
-                let geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
-                    (item) => 
-                        item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
-                        item.typeOfId === GEO_IDS.avatarPropertyId
-                );
+                let geoProperties
+                if (entityOnGeo) {
+                    geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                        (item) => 
+                            item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                            item.typeOfId === GEO_IDS.avatarPropertyId
+                    );
+                } else {
+                    geoProperties = [];
+                }
 
                 if (geoProperties.length < 1) {
                     // create an image

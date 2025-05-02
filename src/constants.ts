@@ -17,6 +17,12 @@ export const GEO_IDS = {
 
   bulletListView: "2KQ8CHTruSetFbi48nsHV3",
 
+  xLinkPropertyId: "2eroVfdaXQEUw314r5hr35",
+  websitePropertyId: "WVVjk5okbvLspwdY1iTmwp",
+  rolesPropertyId: "JkzhbbrXFMfXN7sduMKQRp",
+  authorTypeId: "", //NEED TO CREATE THIS
+  publishedInPropertyId: "", //NEED TO CREATE THIS
+
   //News story IDs
   newsStoryTypeId: "VKPGYGnFuaoAASiAukCVCX",
   maintainersPropertyId: "Vtmojxf3rDL9VaAjG9T2NH",
@@ -32,7 +38,7 @@ export const GEO_IDS = {
   publishDateId: "KPNjGaLx5dKofVhT6Dfw22",
   avatarPropertyId: "399xP4sGWSoepxeEnp3UdR",
   publisherPropertyId: "Lc4JrkpMUPhNstqs7mvnc5",
-  publisherTypeId: "9vk7Q3pz7US3s2KePFQrJT", // "BGCj2JLjDjqUmGW6iZaANK", //This is publisher, currently using project
+  publisherTypeId: "BGCj2JLjDjqUmGW6iZaANK",
 
   //Claim Property IDs
   claimTypeId: "KeG9eTM8NUYFMAjnsvF4Dg",
@@ -61,6 +67,7 @@ export const TESTNET_GEO_IDS = {
   newsStoryOfTheWeekTagId: "KwaMjDaWwvCX8uD938T7qW", // NEED TO CREATE
 
   blocksTypeId: "QYbjCM6NT9xmh2hFGsqpQX",
+  rolesPropertyId: "JkzhbbrXFMfXN7sduMKQRp",
 
   //News story IDs
   newsStoryTypeId: "VKPGYGnFuaoAASiAukCVCX",

@@ -73,7 +73,7 @@ async function main() {
         fs.writeFileSync(`ops.txt`, outputText);
     }
 
-    if (true) {
+    if ((ops.length > 0) && (true)) {
         const iso = new Date().toISOString();
 
         const txHash = await publish({

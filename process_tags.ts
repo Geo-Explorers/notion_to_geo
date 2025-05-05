@@ -45,6 +45,7 @@ async function processDate(currentOps, tag_date: string): Promise<[Array<Op>, st
     let dateGeoId: string;
     if (await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedDate)) { //Search current ops for web url
         dateGeoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", formattedDate)
+
     } else {
         dateGeoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, formattedDate, GEO_IDS.tagTypeId);
         let entityOnGeo;
@@ -92,10 +93,8 @@ async function processDate(currentOps, tag_date: string): Promise<[Array<Op>, st
             }
     
         }
-    
-        return [ops, dateGeoId]
-
     }
+    return [ops, dateGeoId]
              
 }
 
@@ -227,7 +226,7 @@ async function processWeek(currentOps, tag_date: string, dateGeoId): Promise<[Ar
             let formattedPastWeek;
             for (let i = 1; i < 4; i++) {
                 if ((weekNumber - i) < 1) {
-                    formattedPastWeek = `Week ${52 - (weekNumber-i)} of ${date.getFullYear() - 1}`;
+                    formattedPastWeek = `Week ${52 - (weekNumber+i)} of ${date.getFullYear() - 1}`;
                 } else if ((weekNumber - i) < 10) {
                     formattedPastWeek = `Week 0${weekNumber-i} of ${date.getFullYear()}`;
                 } else {
@@ -348,15 +347,17 @@ export async function processTags(currentOps, tag_date: string): Promise<[Array<
     let addOps;
     let geoId: string;
 
-    console.log("TAG DATE STRING: ", tag_date)
+    console.log("TAG DATE STRING: ", tag_date);
 
     let dateGeoId: string;
     [addOps, dateGeoId] = await processDate(currentOps, tag_date);
-    ops.push(...addOps)
+    ops.push(...addOps);
+
+    console.log("DATE_GEO_ID: ", dateGeoId)
 
     let weekGeoId: string;
     [addOps, weekGeoId] = await processWeek(currentOps, tag_date, dateGeoId);
-    ops.push(...addOps)
+    ops.push(...addOps);
 
     return [ops, dateGeoId, weekGeoId];
 }

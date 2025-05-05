@@ -14,6 +14,7 @@ import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
 import { processNewsStory } from "./process_news_story";
 
 import * as fs from "fs";
+import { processTags } from "./process_tags";
 
 
 
@@ -38,16 +39,11 @@ const notion = new Client({
 //SPACE: V7xhycK9fAEy7BmpnDGHTq; PROPERTY: LuBWqZAu6pz54eiJS5mLv8; searchText: Blockchain identity solutions and innovations; typeId: Cj7JSjWKbcdgmUjcLWNR4V}
 //console.log(await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, "TESTSEARCH", GEO_IDS.claimTypeId))
 
-let output = await searchUniquePublishers("BDuZwkjCg3nPWMDshoYtpS", "TF7ySRfyV8hfX1vvWbHQpZ", GEO_IDS.authorsPropertyId);
+let currentOps = []
+let tag_date = "2022-01-01"
 
-const uniqueToEntityIds = [
-    ...new Set(
-        output.flatMap(item =>
-        item.relationsByFromEntityId?.nodes?.map(rel => rel.toEntityId) || []
-      )
-    )
-  ];
-
-
-console.log(uniqueToEntityIds)
-
+let dateGeoId: string;
+[addOps, dateGeoId] = await processTags(currentOps, tag_date);
+//
+console.log(addOps);
+console.log("DATE GEO ID, ", dateGeoId);

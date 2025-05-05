@@ -22,6 +22,7 @@ export const GEO_IDS = {
   rolesPropertyId: "JkzhbbrXFMfXN7sduMKQRp",
   authorTypeId: "", //NEED TO CREATE THIS
   publishedInPropertyId: "", //NEED TO CREATE THIS
+  worksAtPropertyId: "U1uCAzXsRSTP4vFwo1JwJG",
 
   //News story IDs
   newsStoryTypeId: "VKPGYGnFuaoAASiAukCVCX",
@@ -145,7 +146,10 @@ export const TABLES = {
 
     keywords: "145273e214eb8081b7f3f36d97e5138f",
 
-    test_sources: "175273e214eb8055b708e89cbb4f3a66"
+    test_sources: "175273e214eb8055b708e89cbb4f3a66",
+
+    event_people: "1e7273e214eb806ab0fecc8e25d69344",
+    event_projects: "1e7273e214eb800a9bf7d969ea20fa08"
 }
 
 

@@ -89,14 +89,14 @@ export async function processPerson(currentOps, personId: string, notion: any, p
                 if (geoProperties.length < 1) {
                     // create an image
                     const { id: imageId, ops: createImageOps } = await Graph.createImage({
-                        url: cover_url,
+                        url: avatar_url,
                     });
                     ops.push(...createImageOps)
 
                     addOps = Relation.make({
                         fromId: geoId,
                         toId: imageId,
-                        relationTypeId: SystemIds.COVER_PROPERTY, //AVATAR_PROPERTY 
+                        relationTypeId: GEO_IDS.avatarPropertyId, //AVATAR_PROPERTY 
                     });
                     ops.push(addOps);
                 }

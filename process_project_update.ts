@@ -107,7 +107,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
                 }
             }
 
-            //Write cover ops
+            //Write avatar ops
             if (avatar_url != "NONE") {
                 let geoProperties;
                 if (entityOnGeo) {
@@ -123,14 +123,14 @@ export async function processProject(currentOps, projectId: string, notion: any,
                 if (geoProperties.length < 1) {
                     // create an image
                     const { id: imageId, ops: createImageOps } = await Graph.createImage({
-                        url: cover_url,
+                        url: avatar_url,
                     });
                     ops.push(...createImageOps)
 
                     addOps = Relation.make({
                         fromId: geoId,
                         toId: imageId,
-                        relationTypeId: SystemIds.COVER_PROPERTY, //AVATAR_PROPERTY 
+                        relationTypeId: GEO_IDS.avatarPropertyId, //AVATAR_PROPERTY 
                     });
                     ops.push(addOps);
                 }

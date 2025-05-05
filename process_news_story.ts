@@ -254,7 +254,7 @@ export async function processNewsStory(currentOps: Array<Op>, storyId: string, n
                     ops.push(addOps);
 
                     //Add as cover of week tag if it is a news story of the week
-                    if (newsStoryOfTheWeek) {
+                    if (newsStoryOfTheWeek) { // TODO - CHECK IF THERE IS ALREADY A COVER AND REMOVE THE RELATION IF SO....
                         if (weekGeoId) {
                             addOps = Relation.make({
                                 fromId: weekGeoId,

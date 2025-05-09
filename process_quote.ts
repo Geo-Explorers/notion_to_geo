@@ -1,7 +1,7 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation, addSpace } from './src/constants';
 import { format, parse } from 'date-fns';
 import { hasBeenEdited, searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processSource } from "./process_source";
@@ -13,6 +13,7 @@ import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
 export async function processQuote(currentOps: Array<Op>, quoteId: string, notion: any): Promise<[Array<Op>, string]> {
 
     const ops: Array<Op> = [];
+    const currSpaceId = GEO_IDS.cryptoNewsSpaceId;
     let addOps;
     let geoId: string;
     let firstPosition;
@@ -31,7 +32,7 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
         return [ops, geoId];
     } else {
 
-        geoId = await searchEntities(GEO_IDS.cryptoNewsSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.quoteTypeId);
+        geoId = await searchEntities(currSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.quoteTypeId);
         let entityOnGeo;
         if (!geoId) {
             geoId = Id.generate();
@@ -45,12 +46,12 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
         } else {
 
             if (name != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
                 ops.push(...addOps);
             }
 
             // Write Types ops
-            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.quoteTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, GEO_IDS.quoteTypeId, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
             ops.push(...addOps);
 
             //Sources
@@ -66,7 +67,7 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
 
                 if (sourceGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, sourceGeoId, GEO_IDS.sourcesPropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, sourceGeoId, GEO_IDS.sourcesPropertyId, position);
                     ops.push(...addOps);
 
                 }
@@ -76,27 +77,28 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
             const authors = page.properties["Authors"].relation;
             let authorGeoId;
             for (const author of authors) { //for each quote
-                authorGeoId = await processPerson(author.id, notion);
+                [addOps, authorGeoId] = await processPerson([...currentOps, ...ops], author.id, notion);
 
                 if (authorGeoId) {
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, authorGeoId, GEO_IDS.authorsPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, authorGeoId, GEO_IDS.authorsPropertyId, INITIAL_RELATION_INDEX_VALUE);
                     ops.push(...addOps);
                 }
             }
 
             //Related people
             const people = page.properties["Related people"].relation;
-            firstPosition = PositionRange.FIRST;
-            lastPosition = Position.createBetween(firstPosition, PositionRange.LAST);
-            position = Position.createBetween(firstPosition, lastPosition);
+            firstPosition = PositionRange.FIRST
+            lastPosition = Position.createBetween(firstPosition, PositionRange.LAST)
+            position = Position.createBetween(firstPosition, lastPosition)
             //position = INITIAL_RELATION_INDEX_VALUE;
             let relatedPersonGeoId;
             for (const person of people) { //for each quote
-                relatedPersonGeoId = await processPerson(person.id, notion);
+                [addOps, relatedPersonGeoId] = await processPerson([...currentOps, ...ops], person.id, notion);
+                ops.push(...addOps);
 
                 if (relatedPersonGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -109,11 +111,12 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
             //position = INITIAL_RELATION_INDEX_VALUE;
             let relatedProjectGeoId;
             for (const project of projects) { //for each quote
-                relatedProjectGeoId = await processProject(project.id, notion);
+                [addOps, relatedProjectGeoId] = await processProject([...currentOps, ...ops], project.id, notion);
+                ops.push(...addOps);
 
                 if (relatedProjectGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -130,7 +133,7 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
 
                 if (relatedTopicGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedTopicGeoId, GEO_IDS.relatedTopicsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -143,7 +146,7 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
             //});
             //ops.push(addOps);
         }
-        return [ops, geoId];
+        return [await addSpace(ops, currSpaceId), geoId];
 
     }
     

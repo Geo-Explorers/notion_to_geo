@@ -1,5 +1,5 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
-import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewRelation, processNewTriple, buildGeoFilter, createQueryDataBlock } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewRelation, processNewTriple, buildGeoFilter, createQueryDataBlock, addSpace } from './src/constants';
 import { hasBeenEdited, normalizeUrl, searchArticles, searchEntities, searchEntity, searchOps, searchUniquePublishers } from "./search_entities";
 import { processTopic } from "./process_topic";
 import { processProject } from "./process_project";
@@ -9,6 +9,7 @@ import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
 export async function processPerson(currentOps, personId: string, notion: any, publisher?: string): Promise<[Array<Op>, geoId]> {
 
     const ops: Array<Op> = [];
+    const currSpaceId = GEO_IDS.cryptoSpaceId;
     let addOps;
     let geoId: string;
     let firstPosition;
@@ -39,7 +40,7 @@ export async function processPerson(currentOps, personId: string, notion: any, p
     if (geoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", name, SystemIds.PERSON_TYPE)) { //Search current ops for web url
         return [ops, geoId]
     } else {
-        geoId = await searchEntities(GEO_IDS.cryptoSpaceId, SystemIds.NAME_PROPERTY, name, SystemIds.PERSON_TYPE);
+        geoId = await searchEntities(currSpaceId, SystemIds.NAME_PROPERTY, name, SystemIds.PERSON_TYPE);
         let entityOnGeo;
         if (!geoId) {
             geoId = Id.generate();
@@ -48,38 +49,42 @@ export async function processPerson(currentOps, personId: string, notion: any, p
             console.log("entity exists on geo")
         }
 
+        if ((!entityOnGeo) && ((name == "NONE") || ((desc == "NONE") && (avatar_url == "NONE")))) {
+            return [ops, null]
+        }
+
         if (await hasBeenEdited(currentOps, geoId)) {
             return [ops, geoId]
         } else {
 
             if (name != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
                 ops.push(...addOps);
             }
 
             //Write Description ops
             if (desc != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
                 ops.push(...addOps);
             }
 
             //Write X Link ops
             if (xLink != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.xLinkPropertyId, xLink, "URL");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, GEO_IDS.xLinkPropertyId, xLink, "URL");
                 ops.push(...addOps);
             }
 
             //Add person type
-            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.PERSON_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, SystemIds.PERSON_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
             ops.push(...addOps);
 
-            //Write cover ops
+            //Write avatar ops
             if (avatar_url != "NONE") {
                 let geoProperties
                 if (entityOnGeo) {
                     geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                         (item) => 
-                            item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                            item.spaceId === currSpaceId &&
                             item.typeOfId === GEO_IDS.avatarPropertyId
                     );
                 } else {
@@ -102,6 +107,35 @@ export async function processPerson(currentOps, personId: string, notion: any, p
                 }
             }
 
+            //Write cover ops
+            if (cover_url != "NONE") {
+                let geoProperties
+                if (entityOnGeo) {
+                    geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
+                        (item) => 
+                            item.spaceId === currSpaceId &&
+                            item.typeOfId === SystemIds.COVER_PROPERTY
+                    );
+                } else {
+                    geoProperties = []
+                }
+
+                if (geoProperties.length < 1) {
+                    // create an image
+                    const { id: imageId, ops: createImageOps } = await Graph.createImage({
+                        url: cover_url,
+                    });
+                    ops.push(...createImageOps)
+
+                    addOps = Relation.make({
+                        fromId: geoId,
+                        toId: imageId,
+                        relationTypeId: SystemIds.COVER_PROPERTY, //AVATAR_PROPERTY 
+                    });
+                    ops.push(addOps);
+                }
+            }
+
             //Related people
             const people = page.properties["Related people"].relation;
             firstPosition = PositionRange.FIRST
@@ -115,7 +149,7 @@ export async function processPerson(currentOps, personId: string, notion: any, p
 
                 if (relatedPersonGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedPersonGeoId, GEO_IDS.relatedPeoplePropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -134,7 +168,7 @@ export async function processPerson(currentOps, personId: string, notion: any, p
 
                 if (relatedProjectGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -150,7 +184,7 @@ export async function processPerson(currentOps, personId: string, notion: any, p
 
                 if (relatedTopicGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedTopicGeoId, GEO_IDS.relatedTopicsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -170,60 +204,43 @@ export async function processPerson(currentOps, personId: string, notion: any, p
                 if (entityOnGeo) {
                     const blocksOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                         (item) => 
-                            item.spaceId === GEO_IDS.cryptoSpaceId &&
+                            item.spaceId === currSpaceId &&
                             item.typeOfId === SystemIds.BLOCKS &&
-                            item.toEntity.name?.toLowerCase() === "Articles"?.toLowerCase()
+                            item.toEntity.name?.toLowerCase() === "Authored articles"?.toLowerCase()
                     );
                     if (blocksOnEntity.length < 1) {
-                        addOps = createQueryDataBlock("Articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                        addOps = createQueryDataBlock("Authored articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
                         ops.push(...addOps);
                     }
                 } else {
-                    addOps = createQueryDataBlock("Articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                    addOps = createQueryDataBlock("Authored articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
                     ops.push(...addOps);
                 }
 
                 //Add role author
-                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.authorTypeId, GEO_IDS.rolesPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, GEO_IDS.authorRoleId, GEO_IDS.rolesPropertyId, INITIAL_RELATION_INDEX_VALUE);
                 ops.push(...addOps);
 
                 //Add all the publishers they posted for as "Published articles in". Note, need to make sure they havent been added before
                 // use publisher input to this function.
                 if (publisher){
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, publisher, GEO_IDS.publishedInPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, publisher, GEO_IDS.publishedInPropertyId, INITIAL_RELATION_INDEX_VALUE);
                     ops.push(...addOps);
                 }
-                const publisherList = await searchUniquePublishers(GEO_IDS.cryptoNewsSpaceId, geoId, GEO_IDS.authorsPropertyId);
+                const publisherList = await searchUniquePublishers(currSpaceId, geoId, GEO_IDS.authorsPropertyId);
                 if (publisherList) {
                     for (const pub of publisherList) {
-                        addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, pub, GEO_IDS.publishedInPropertyId, INITIAL_RELATION_INDEX_VALUE);
+                        addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, pub, GEO_IDS.publishedInPropertyId, INITIAL_RELATION_INDEX_VALUE);
                         ops.push(...addOps);
                     }
                 }
-
             }
-            
-
-            //Add minimum amount of info to run this code...
-
-            //Add spaceId to each op
-            let spaceId = GEO_IDS.cryptoSpaceId;
-            const updatedOps = ops.map(op => ({
-                ...op,
-                spaceId
-            }));
-            console.log(updatedOps)
-            console.error("CALLED WRONG FUNCTION")
-            //If i have some ops with space id and some not will this work?
-            return [updatedOps, geoId]
-            
-
         }
+        //Add minimum amount of info to run this code...
+        //If i have some ops with space id and some not will this work?
+        return [await addSpace(ops, currSpaceId), geoId]
     }
-    
-
 }
-
 
 
 

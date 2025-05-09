@@ -1,5 +1,6 @@
 const { Client } = require("@notionhq/client")
 import { walletAddress, TABLES } from './src/constants';
+import * as fs from "fs";
 
 
 // Initializing a client
@@ -7,34 +8,29 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
+const fileContent = fs.readFileSync('ops.txt', 'utf-8');
 
-async function updateEditStatus(pageId: string) {
-  await notion.pages.update({
-    page_id: pageId,
-    properties: {
-      "Edit status": {
-        multi_select: [
-          { name: "Published" }
-        ]
-      }
-    }
-  });
-}
+const ops = JSON.parse(fileContent);
+
+console.log(ops);
+
+// Step 1: Get all toEntity IDs from disqualifying CREATE_RELATION ops
+const disqualifiedEntities = new Set(
+  ops
+    .filter(op =>
+      op.type === "CREATE_RELATION" &&
+      op.relation.type === "QYbjCM6NT9xmh2hFGsqpQX"
+    )
+    .map(op => op.relation.toEntity)
+);
+
+// Step 2: Filter SET_TRIPLE ops where entity is not in the disqualified set
+const validSetTripleOps = ops.filter(op =>
+  op.type === "SET_TRIPLE" &&
+  !disqualifiedEntities.has(op.triple.entity)
+);
+
+//console.log(validSetTripleOps);
+//console.log(ops);
 
 
-await updateEditStatus("1de273e214eb808f94b4c2136b1b1a05")
-
-
-
-//For news story:
-//name, description, cover, publish date,
-//LINK TO: maintainer(s), related people, related topics, sources, tags
-//Create tables to show: Collections...
-
-//const getConcatenatedPlainText = (textArray: any[]): string => {
-//    return textArray.map(item => item.plain_text).join("");
-//  };
-
-//console.log("PAGE RESULTS")
-//const page = await notion.pages.retrieve({ page_id: "1af273e214eb807eb6eac0285eef5824" });
-//console.log(getConcatenatedPlainText(page.properties['Name'].title))

@@ -1,4 +1,5 @@
 import { SystemIds } from "@graphprotocol/grc-20";
+import { GEO_IDS } from "./src/constants";
 
 //UPDATE QUERY URL
 const mainnet_query_url = "https://hypergraph.up.railway.app/graphql";
@@ -761,8 +762,25 @@ export async function searchUniquePublishers(space: string, toEntity: string, ty
 
         return uniqueToEntityIds;
     } else {
-        return null;
+        return [];
     }
 }
 
 
+
+
+export async function searchOpsForPublisherAvatar(ops: Array<Ops>, publisherGeoId: string) {
+    
+    let match;
+    match = ops.find(op =>
+        op.type === "CREATE_RELATION" &&
+        op.relation.fromEntity === publisherGeoId &&
+        op.relation.type === GEO_IDS.avatarPropertyId
+    );
+
+    if (match) {
+        return match.relation.toEntity;
+    } else {
+        return null
+    }
+}

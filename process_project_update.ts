@@ -1,5 +1,5 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
-import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock } from './src/constants';
+import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock, addSpace } from './src/constants';
 import { hasBeenEdited, normalizeUrl, searchArticles, searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processTopic } from "./process_topic";
 import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
@@ -7,6 +7,7 @@ import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
 export async function processProject(currentOps, projectId: string, notion: any, publisher?: string): Promise<[Array<Op>, geoId]> {
 
     const ops: Array<Op> = [];
+    const currSpaceId = GEO_IDS.cryptoSpaceId;
     let addOps;
     let geoId: string;
     let firstPosition;
@@ -38,7 +39,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
     if (geoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", name, SystemIds.PROJECT_TYPE)) { //Search current ops for web url
         return [ops, geoId]
     } else {
-        geoId = await searchEntities(GEO_IDS.cryptoSpaceId, SystemIds.NAME_PROPERTY, name, SystemIds.PROJECT_TYPE);
+        geoId = await searchEntities(currSpaceId, SystemIds.NAME_PROPERTY, name, SystemIds.PROJECT_TYPE);
         let entityOnGeo;
         if (!geoId) {
             geoId = Id.generate();
@@ -47,35 +48,39 @@ export async function processProject(currentOps, projectId: string, notion: any,
             console.log("entity exists on geo")
         }
 
+        if ((!entityOnGeo) && ((name == "NONE") || ((desc == "NONE") && (avatar_url == "NONE")))) {
+            return [ops, null]
+        }
+
         if (await hasBeenEdited(currentOps, geoId)) {
             return [ops, geoId]
         } else {
 
             if (name != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, SystemIds.NAME_PROPERTY, name, "TEXT");
                 ops.push(...addOps);
             }
 
             //Write Description ops
             if (desc != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, SystemIds.DESCRIPTION_PROPERTY, desc, "TEXT");
                 ops.push(...addOps);
             }
 
             //Write Website ops
             if (website != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.websitePropertyId, website, "URL");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, GEO_IDS.websitePropertyId, website, "URL");
                 ops.push(...addOps);
             }
 
             //Write X Link ops
             if (xLink != "NONE") {
-                addOps = await processNewTriple(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, GEO_IDS.xLinkPropertyId, xLink, "URL");
+                addOps = await processNewTriple(currSpaceId, entityOnGeo, geoId, GEO_IDS.xLinkPropertyId, xLink, "URL");
                 ops.push(...addOps);
             }
 
             //Add project type...
-            addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.PROJECT_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+            addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, SystemIds.PROJECT_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
             ops.push(...addOps);
 
             //Write cover ops
@@ -84,7 +89,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
                 if (entityOnGeo) {
                     geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                         (item) => 
-                            item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                            item.spaceId === currSpaceId &&
                             item.typeOfId === SystemIds.COVER_PROPERTY
                     );
                 } else {
@@ -113,7 +118,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
                 if (entityOnGeo) {
                     geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                         (item) => 
-                            item.spaceId === GEO_IDS.cryptoNewsSpaceId &&
+                            item.spaceId === currSpaceId &&
                             item.typeOfId === GEO_IDS.avatarPropertyId
                     );
                 } else {
@@ -149,7 +154,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
 
                 if (relatedProjectGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedProjectGeoId, GEO_IDS.relatedProjectsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -165,7 +170,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
 
                 if (relatedTopicGeoId) {
                     position = Position.createBetween(position, lastPosition);
-                    addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                    addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, relatedTopicGeoId, GEO_IDS.relatedTopicsPropertyId, position);
                     ops.push(...addOps);
                 }
             }
@@ -183,30 +188,28 @@ export async function processProject(currentOps, projectId: string, notion: any,
                 if (entityOnGeo) {
                     const blocksOnEntity = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                         (item) => 
-                            item.spaceId === GEO_IDS.cryptoSpaceId &&
+                            item.spaceId === currSpaceId &&
                             item.typeOfId === SystemIds.BLOCKS &&
-                            item.toEntity.name?.toLowerCase() === "Articles"?.toLowerCase()
+                            item.toEntity.name?.toLowerCase() === "Published articles"?.toLowerCase()
                     );
                     if (blocksOnEntity.length < 1) {
-                        addOps = createQueryDataBlock("Articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                        addOps = createQueryDataBlock("Published articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
                         ops.push(...addOps);
                     }
                 } else {
-                    addOps = createQueryDataBlock("Articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
+                    addOps = createQueryDataBlock("Published articles", geoId, filter, GEO_IDS.bulletListView, INITIAL_RELATION_INDEX_VALUE, [GEO_IDS.relatedProjectsPropertyId]);
                     ops.push(...addOps);
                 }
 
                 //Add company type
-                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, SystemIds.COMPANY_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
+                addOps = await processNewRelation(currSpaceId, entityOnGeo, geoId, SystemIds.COMPANY_TYPE, SystemIds.TYPES_PROPERTY, INITIAL_RELATION_INDEX_VALUE);
                 ops.push(...addOps);
 
                 //If editorial team on notion process them and add them to a collection...
 
             }
 
-            console.error("CALLED WRONG FUNCTION")
-
-            return [ops, geoId]
+            return [await addSpace(ops, currSpaceId), geoId]
         }
     }
     

@@ -1,7 +1,7 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
-import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock } from './src/constants';
+import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock, addSpace } from './src/constants';
 import { searchEntities, searchOps, searchDataBlocks, searchEntity, hasBeenEdited } from "./search_entities";
 
 import { format, getWeek, getQuarter, parseISO } from "date-fns";
@@ -344,6 +344,7 @@ export async function processTags(currentOps, tag_date: string): Promise<[Array<
 //THEN FROM THAT DATE, I will know if I need to create a new data block in the week of tag
 //I ALSO NEED TO ADD THE QX YYYY tag to the week of page.
     const ops: Array<Op> = [];
+    const currSpaceId = GEO_IDS.cryptoNewsSpaceId;
     let addOps;
     let geoId: string;
 
@@ -359,7 +360,7 @@ export async function processTags(currentOps, tag_date: string): Promise<[Array<
     [addOps, weekGeoId] = await processWeek(currentOps, tag_date, dateGeoId);
     ops.push(...addOps);
 
-    return [ops, dateGeoId, weekGeoId];
+    return [await addSpace(ops, currSpaceId), dateGeoId, weekGeoId];
 }
 
 

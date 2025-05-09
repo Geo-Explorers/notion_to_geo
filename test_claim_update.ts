@@ -137,7 +137,7 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
 
             if (relatedTopicGeoId) {
                 position = Position.createBetween(position, lastPosition);
-                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, SystemIds.RELATED_TOPICS_PROPERTY, position);
+                addOps = await processNewRelation(GEO_IDS.cryptoNewsSpaceId, entityOnGeo, geoId, relatedTopicGeoId, GEO_IDS.relatedTopicsPropertyId, position);
                 ops.push(...addOps);
             }
         }

@@ -2,12 +2,9 @@ import * as fs from "fs";
 import { publish } from "./src/publish";
 import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, getSpaces, filterOps } from './src/constants';
 import { processNewsStory } from "./process_news_story";
+import { processPost } from "./process_post";
 
 const { Client } = require("@notionhq/client");
-
-//Create process to only publish create triple names for all people and projects Then in a subsequent transaction send the rest of the ops
-// - Make sure to only create name triples for main entities. Dont do this for any enities with type block.
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 function prioritizeItem(arr: string[], target: string): string[] {
     const index = arr.indexOf(target);
@@ -50,7 +47,7 @@ async function main() {
 
     while (hasMore) {
         const response = await notion.databases.query({
-            database_id: TABLES.news_stories,
+            database_id: TABLES.improvementProposals,
             filter: {
                 property: "Edit status",
                 multi_select: {
@@ -72,10 +69,10 @@ async function main() {
         }
     }
 
-    for (const story of allResults) {
-        console.log("Notion ID", story.id);
-        notionIds.push(story.id);
-        [addOps, geoId] = await processNewsStory(ops, story.id, notion);
+    for (const ip of allResults) {
+        console.log("Notion ID", ip.id);
+        notionIds.push(ip.id);
+        [addOps, geoId] = await processPost(ops, ip.id, notion);
         ops.push(...addOps);
         console.log("Geo ID", geoId);
     }
@@ -98,7 +95,7 @@ async function main() {
             txHash = await publish({
                 spaceId: space,
                 author: mainnetWalletAddress,
-                editName: `Upload news stories ${iso}`,
+                editName: `Upload improvement proposals ${iso}`,
                 ops: await filterOps(ops, space), // An edit accepts an array of Ops
             }, "MAINNET");
     

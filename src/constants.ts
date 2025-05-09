@@ -17,11 +17,17 @@ export const GEO_IDS = {
 
   bulletListView: "2KQ8CHTruSetFbi48nsHV3",
 
+  improvementProposalTypeId: "6wya2r7xivwKiYSXuKgGSM",
+  discussionLinkPropertyId: "7b8cbsM38h8PWXQ29isjdk", 
+  statusPropertyId: "XHoA7MeFgHXGgCqn257s5F", 
+  abstractPropertyId: "92PL1JTfCkuKDT4BLXsFX3", 
+  networkPropertyId: "MuMLDVbHAmRjZQjhyk3HGx",
+
   xLinkPropertyId: "2eroVfdaXQEUw314r5hr35",
   websitePropertyId: "WVVjk5okbvLspwdY1iTmwp",
   rolesPropertyId: "JkzhbbrXFMfXN7sduMKQRp",
-  authorTypeId: "", //NEED TO CREATE THIS
-  publishedInPropertyId: "", //NEED TO CREATE THIS
+  authorRoleId: "WMc1G1C78zdVrigzFYBNBp", //NEED TO CREATE THIS
+  publishedInPropertyId: "JEKLKQP5H8NQdVtvGaEFT6", //NEED TO CREATE THIS
   worksAtPropertyId: "U1uCAzXsRSTP4vFwo1JwJG",
 
   //News story IDs
@@ -149,7 +155,9 @@ export const TABLES = {
     test_sources: "175273e214eb8055b708e89cbb4f3a66",
 
     event_people: "1e7273e214eb806ab0fecc8e25d69344",
-    event_projects: "1e7273e214eb800a9bf7d969ea20fa08"
+    event_projects: "1e7273e214eb800a9bf7d969ea20fa08",
+
+    improvementProposals: "1ea273e214eb8097a752d830a8c0d003",
 }
 
 
@@ -329,7 +337,7 @@ export async function processNewTriple(spaceId: string, entityOnGeo: any, geoId:
     return ops
 }
 
-export async function processNewRelation(spaceId: string, entityOnGeo: any, geoId: string, toEntityId: string, propertyId: string, position?: string): Promise<Array<Op>> {
+export async function processNewRelation(spaceId: string, entityOnGeo: any, geoId: string, toEntityId: string, propertyId: string, position?: string, reset_position?: boolean): Promise<Array<Op>> {
     let geoProperties;
     const ops: Array<Op> = [];
     let addOps;
@@ -350,6 +358,16 @@ export async function processNewRelation(spaceId: string, entityOnGeo: any, geoI
                 position: position,
             });
             ops.push(addOps);
+        } else if ((position) && (reset_position) && (geoProperties.length == 1)) {
+            addOps = Triple.make({
+              entityId: geoProperties?.[0]?.entityId,
+              attributeId: SystemIds.RELATION_INDEX,
+              value: {
+                  type: "TEXT",
+                  value: position,
+              },
+            });
+            ops.push(addOps);
         }
     } else {
         addOps = Relation.make({
@@ -362,4 +380,44 @@ export async function processNewRelation(spaceId: string, entityOnGeo: any, geoI
     }
 
     return ops
+}
+
+
+export async function addSpace(ops, spaceId: string): Promise<Op | Op[]> {
+  const addIfMissing = (op: Op): Op =>
+    op.spaceId ? op : { ...op, spaceId };
+
+  if (Array.isArray(ops)) {
+    return ops.map(addIfMissing);
+  } else {
+    return addIfMissing(ops);
+  }
+}
+
+export async function filterOps(ops, spaceId: string): Op | Op[] | null {
+  const clean = (op: Op): Op => {
+    const { spaceId: _, ...rest } = op;
+    return rest;
+  };
+
+  if (Array.isArray(ops)) {
+    const filtered = ops.filter(op => op.spaceId === spaceId).map(clean);
+    return filtered;
+  } else {
+    if (ops.spaceId === spaceId) {
+      return clean(ops);
+    } else {
+      return null;
+    }
+  }
+}
+
+
+export async function getSpaces(ops: Op | Op[]): string[] {
+  const opsArray = Array.isArray(ops) ? ops : [ops];
+  const spaceIds = opsArray
+    .map(op => op.spaceId)
+    .filter((id): id is string => typeof id === 'string');
+
+  return Array.from(new Set(spaceIds));
 }

@@ -112,7 +112,7 @@ export async function processPerson(currentOps, personId: string, notion: any, p
                         geoProperties = entityOnGeo?.relationsByFromVersionId?.nodes.filter(
                             (item) => 
                                 item.spaceId === GEO_IDS.cryptoSpaceId &&
-                                item.typeOfId === GEO_IDS.avatarPropertyId
+                                item.typeOfId === SystemIds.COVER_PROPERTY
                         );
                     } else {
                         geoProperties = []

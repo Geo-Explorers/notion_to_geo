@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notion Article Publisher</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      button {
+        padding: 10px 15px;
+        background: #0070f3;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0051a8;
+      }
+      #status {
+        margin-top: 20px;
+      }
+      .input-container {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>News Story Publisher</h1>
+    <p>This is a simple tool to publish news stories to Geo.</p>
+    <p>
+      It will retrieve news stories from Notion with status
+      <i>Ready to Publish</i> and publish them to Geo.
+    </p>
+    <div class="input-container">
+      <p>Enter private key to publish a news story to Geo.</p>
+      <input type="text" id="privateKey" placeholder="Enter private key" />
+    </div>
+    <button id="processBtn">Publish</button>
+    <div id="status"></div>
+
+    <script>
+      let isProcessing = false;
+      document
+        .getElementById("processBtn")
+        .addEventListener("click", async () => {
+          if (isProcessing) return;
+          isProcessing = true;
+
+          const statusDiv = document.getElementById("status");
+          const privateKey = document.getElementById("privateKey").value;
+
+          if (!privateKey.trim()) {
+            statusDiv.innerHTML =
+              '<p style="color: red;">❌ Please enter a private key</p>';
+            isProcessing = false;
+            return;
+          }
+
+          statusDiv.innerHTML = "Processing articles...";
+
+          try {
+            const response = await fetch("/process", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ privateKey }),
+            });
+            const result = await response.json();
+
+            if (result.success) {
+              statusDiv.innerHTML = `<p style="color: green;">✅ ${result.message}</p>`;
+            } else {
+              statusDiv.innerHTML = `<p style="color: red;">❌ ${result.message}</p>`;
+            }
+          } catch (error) {
+            statusDiv.innerHTML =
+              '<p style="color: red;">❌ An error occurred. Please check the server logs.</p>';
+          } finally {
+            isProcessing = false;
+          }
+        });
+    </script>
+  </body>
+</html>

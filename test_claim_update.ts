@@ -1,4 +1,4 @@
-import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
+import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph, type Op } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewRelation, processNewTriple } from './src/constants';
@@ -10,6 +10,7 @@ import { processTags } from "./process_tags";
 import { processProject } from "./process_project";
 import { processTopic } from "./process_topic";
 import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
+import { Client } from "@notionhq/client";
 
 export async function processClaim(currentOps: Array<Op>, claimId: string, notion: any): Promise<[Array<Op>, string]> {
 
@@ -159,8 +160,6 @@ export async function processClaim(currentOps: Array<Op>, claimId: string, notio
 
 
 async function main() {
-    
-    const { Client } = require("@notionhq/client");
     // Initializing a client
     const nnotion = new Client({
         auth: process.env.NOTION_TOKEN,

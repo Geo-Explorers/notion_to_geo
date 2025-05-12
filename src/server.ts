@@ -23,11 +23,12 @@ app.get("/", (_req, res) => {
 app.post("/process", async (req, res) => {
   try {
     const { privateKey } = req.body;
-    const pk_to_use = privateKey.startsWith("0x") ? privateKey : `0x${privateKey}`;
+    const pk_to_use = privateKey.startsWith("0x")
+      ? privateKey
+      : `0x${privateKey}`;
     SET_PK_SW(pk_to_use);
 
     const result = await import_notion_articles();
-    console.log("Private Key:", privateKey);
 
     res.json({
       success: true,

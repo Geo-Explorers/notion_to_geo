@@ -15,6 +15,9 @@ type PublishOptions = {
 };
 
 export async function publish(options: PublishOptions, network: string) {
+  if (!privateKey) {
+    throw new Error("Private key not found");
+  }
   console.log("privateKey", privateKey);
   const smartAccountWalletClient = await getSmartAccountWalletClient({
     privateKey,

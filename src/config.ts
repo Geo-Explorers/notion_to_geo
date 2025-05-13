@@ -13,8 +13,8 @@ export const config = {
 
 let PK_SW: `0x${string}` | undefined = undefined;
 
-export const GET_PK_SW = (): `0x${string}` => {
-  return PK_SW || import.meta.env.VITE_PK_SW;
+export const GET_PK_SW = (): `0x${string}` | undefined => {
+  return PK_SW;
 };
 
 export const SET_PK_SW = (pk: `0x${string}`) => {

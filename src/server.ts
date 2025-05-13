@@ -28,7 +28,6 @@ app.post("/process", async (req, res) => {
       ? privateKey
       : `0x${privateKey}`;
 
-    console.log("server.ts: privateKey", pk_to_use);
     SET_PK_SW(pk_to_use);
 
     const result = await import_notion_articles();

@@ -5,7 +5,6 @@ import { GET_PK_SW } from "./config";
 
 // IMPORTANT: Be careful with your private key. Don't commit it to version control.
 // You can get your private key using https://www.geobrowser.io/export-wallet
-const privateKey = GET_PK_SW();
 
 type PublishOptions = {
   spaceId: string;
@@ -15,10 +14,12 @@ type PublishOptions = {
 };
 
 export async function publish(options: PublishOptions, network: string) {
+  const privateKey = GET_PK_SW();
+
   if (!privateKey) {
     throw new Error("Private key not found");
   }
-  console.log("privateKey", privateKey);
+
   const smartAccountWalletClient = await getSmartAccountWalletClient({
     privateKey,
     // rpcUrl, // optional

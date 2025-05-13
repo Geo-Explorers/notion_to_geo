@@ -13,6 +13,7 @@ const RPC = import.meta.env.VITE_RPC;
 if (!RPC) {
   throw new Error("RPC does not exist in environment");
 }
+
 export const config = {
   pk: PK,
   rpc: RPC,

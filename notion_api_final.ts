@@ -4,7 +4,7 @@ import { walletAddress, TABLES } from './src/constants';
 
 // Initializing a client
 const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
+  auth: process.env.VITE_NOTION_TOKEN,
 })
 
 const allResults = [];

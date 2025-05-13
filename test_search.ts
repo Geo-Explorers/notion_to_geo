@@ -27,7 +27,7 @@ let geoId: string;
 
 // Initializing a client
 const notion = new Client({
-    auth: process.env.NOTION_TOKEN,
+    auth: process.env.VITE_NOTION_TOKEN,
 });
 
 //[addOps, geoId] = await processSource("1af273e214eb80f58245cc895f7ec7ac", notion);

@@ -15,6 +15,7 @@ type PublishOptions = {
 };
 
 export async function publish(options: PublishOptions, network: string) {
+  console.log("privateKey", privateKey);
   const smartAccountWalletClient = await getSmartAccountWalletClient({
     privateKey,
     // rpcUrl, // optional

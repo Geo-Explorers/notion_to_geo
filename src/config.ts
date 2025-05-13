@@ -4,8 +4,15 @@ dotenv.config();
 
 const PK = import.meta.env.VITE_PK;
 
+if (!PK) {
+  throw new Error("PK does not exist in environment");
+}
+
 const RPC = import.meta.env.VITE_RPC;
 
+if (!RPC) {
+  throw new Error("RPC does not exist in environment");
+}
 export const config = {
   pk: PK,
   rpc: RPC,

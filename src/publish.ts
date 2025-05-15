@@ -44,7 +44,7 @@ export async function publish(options: PublishOptions, network: string, privateK
 	const { to, data } = await result.json();
 
 	if (network == "TESTNET") {
-		return await wallet.sendTransaction({
+		return await wallet(pk).sendTransaction({
 			to: to,
 			value: 0n,
 			data: data,

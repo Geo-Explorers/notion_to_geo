@@ -16,7 +16,6 @@ export async function publish(
   options: PublishOptions,
   network: string,
   privateKey?: `0x${string}`,
-  walletAddress?: string
 ) {
   const pk = privateKey || (process.env.PK_SW as `0x${string}`);
 
@@ -24,7 +23,7 @@ export async function publish(
     throw new Error("Private key is required");
   }
 
-  if (!walletAddress) {
+  if (!options.author) {
     throw new Error("Wallet address is required");
   }
 
@@ -35,7 +34,7 @@ export async function publish(
 
   const cid = await Ipfs.publishEdit({
     name: options.editName,
-    author: walletAddress,
+    author: options.author,
     ops: options.ops,
   });
 

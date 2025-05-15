@@ -97,7 +97,7 @@ export async function import_notion_articles(privateKey: `0x${string}`, walletAd
         for (const space of spaces) { 
             txHash = await publish({
                 spaceId: space,
-                author: mainnetWalletAddress,
+                author: walletAddress,
                 editName: `Upload news stories ${iso}`,
                 ops: await filterOps(ops, space), // An edit accepts an array of Ops
             }, "MAINNET", privateKey);

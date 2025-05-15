@@ -35,7 +35,7 @@ app.post("/process", async (req, res) => {
       return;
     }
 
-    const { privateKey } = req.body;
+    const { privateKey, walletAddress } = req.body;
 
     if (!privateKey) {
       res.status(400).json({
@@ -51,7 +51,8 @@ app.post("/process", async (req, res) => {
 
     isProcessingNewsStories = true;
 
-    const result = await import_notion_articles(pk_to_use);
+    // const result = await import_notion_articles(pk_to_use);
+    const result = await import_notion_articles(pk_to_use, walletAddress);
 
     res.json({
       success: true,

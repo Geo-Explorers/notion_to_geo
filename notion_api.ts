@@ -33,7 +33,7 @@ async function updateEditStatus(pageId: string, notion) {
     });
   }
 
-export async function import_notion_articles(privateKey: `0x${string}`) {
+export async function import_notion_articles(privateKey: `0x${string}`, walletAddress: string) {
     const ops: Array<Op> = [];
     let addOps;
     let geoId: string;

@@ -2,8 +2,8 @@ import * as fs from "fs";
 import { publish } from "./src/publish";
 import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, getSpaces, filterOps } from './src/constants';
 import { processNewsStory } from "./process_news_story";
-
-const { Client } = require("@notionhq/client");
+import type { Op } from "@graphprotocol/grc-20";
+import { Client } from "@notionhq/client";
 
 //Create process to only publish create triple names for all people and projects Then in a subsequent transaction send the rest of the ops
 // - Make sure to only create name triples for main entities. Dont do this for any enities with type block.
@@ -33,7 +33,7 @@ async function updateEditStatus(pageId: string, notion) {
     });
   }
 
-async function main() {
+export async function import_notion_articles(privateKey: `0x${string}`) {
     const ops: Array<Op> = [];
     let addOps;
     let geoId: string;
@@ -100,7 +100,7 @@ async function main() {
                 author: mainnetWalletAddress,
                 editName: `Upload news stories ${iso}`,
                 ops: await filterOps(ops, space), // An edit accepts an array of Ops
-            }, "MAINNET");
+            }, "MAINNET", privateKey);
     
             console.log(`Your transaction hash for ${space} is:`, txHash);
             console.log(iso);
@@ -123,5 +123,3 @@ async function main() {
     }
 
 }
-
-main();

@@ -4,11 +4,6 @@ import { getSmartAccountWalletClient } from '@graphprotocol/grc-20';
 
 // IMPORTANT: Be careful with your private key. Don't commit it to version control.
 // You can get your private key using https://www.geobrowser.io/export-wallet
-const privateKey = process.env.PK_SW;
-const smartAccountWalletClient = await getSmartAccountWalletClient({
-  privateKey,
-  // rpcUrl, // optional
-});
 
 type PublishOptions = {
 	spaceId: string;
@@ -17,7 +12,18 @@ type PublishOptions = {
 	ops: Op[];
 };
 
-export async function publish(options: PublishOptions, network: string) {
+export async function publish(options: PublishOptions, network: string, privateKey?: `0x${string}`) {
+	const pk = privateKey || process.env.PK_SW as `0x${string}`;
+
+	if (!pk) {
+		throw new Error("Private key is required");
+	}
+
+	const smartAccountWalletClient = await getSmartAccountWalletClient({
+		privateKey: pk,
+		// rpcUrl, // optional
+	});
+
 	const cid = await Ipfs.publishEdit({
 		name: options.editName,
 		author: options.author,

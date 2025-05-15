@@ -19,6 +19,10 @@ app.get("/", (_req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
 
+app.get("/process_news_stories", (_req, res) => {
+  res.sendFile(path.join(publicPath, "process_news_stories.html"));
+});
+
 let isProcessingNewsStories = false;
 app.post("/process", async (req, res) => {
   try {
@@ -30,12 +34,22 @@ app.post("/process", async (req, res) => {
 
       return;
     }
-    isProcessingNewsStories = true;
+
     const { privateKey } = req.body;
+
+    if (!privateKey) {
+      res.status(400).json({
+        success: false,
+        message: "Private key is required",
+      });
+      return;
+    }
 
     const pk_to_use = privateKey.startsWith("0x")
       ? privateKey
       : `0x${privateKey}`;
+
+    isProcessingNewsStories = true;
 
     const result = await import_notion_articles(pk_to_use);
 
@@ -46,9 +60,11 @@ app.post("/process", async (req, res) => {
     });
   } catch (error) {
     console.error("Error processing articles:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to process news stories" });
+    res.status(500).json({
+      success: false,
+      message: "Failed to process news stories",
+      trace: error,
+    });
   } finally {
     isProcessingNewsStories = false;
   }

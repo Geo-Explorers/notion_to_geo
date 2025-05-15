@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Notion to Geo Publisher</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -27,63 +26,12 @@
         margin-bottom: 20px;
       }
     </style>
+    <title>Notion tools</title>
   </head>
   <body>
-    <h1>Notion to Geo Publisher</h1>
-    <p>This is a tool to publish news stories to Geo.</p>
-    <p>
-      It retrieves news stories from Notion with status
-      <i>Ready to Publish</i> and publishes them to Geo.
-    </p>
-    <div class="input-container">
-      <p>Enter private key to publish news stories to Geo.</p>
-      <input type="text" id="privateKey" placeholder="Enter private key" />
-    </div>
-    <button id="processBtn">Publish</button>
-    <div id="status"></div>
-
-    <script>
-      let isProcessing = false;
-      document
-        .getElementById("processBtn")
-        .addEventListener("click", async () => {
-          if (isProcessing) return;
-          isProcessing = true;
-
-          const statusDiv = document.getElementById("status");
-          const privateKey = document.getElementById("privateKey").value;
-
-          if (!privateKey.trim()) {
-            statusDiv.innerHTML =
-              '<p style="color: red;">❌ Please enter a private key</p>';
-            isProcessing = false;
-            return;
-          }
-
-          statusDiv.innerHTML = "Processing articles...";
-
-          try {
-            const response = await fetch("/process", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ privateKey }),
-            });
-            const result = await response.json();
-
-            if (result.success) {
-              statusDiv.innerHTML = `<p style="color: green;">✅ ${result.message}</p>`;
-            } else {
-              statusDiv.innerHTML = `<p style="color: red;">❌ ${result.message}</p>`;
-            }
-          } catch (error) {
-            statusDiv.innerHTML =
-              '<p style="color: red;">❌ An error occurred. Please check the server logs.</p>';
-          } finally {
-            isProcessing = false;
-          }
-        });
-    </script>
+    <h1>Table of contents</h1>
+    <ul>
+      <li><a href="/process_news_stories">Process news stories</a></li>
+    </ul>
   </body>
 </html>

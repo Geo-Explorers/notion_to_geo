@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { Relation, Triple } from "@graphprotocol/grc-20";
+import { Relation, Triple, type Op } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { processSource } from "./process_source";
@@ -7,7 +7,7 @@ import { processClaim } from "./process_claim";
 import { testnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, TESTNET_GEO_IDS } from './src/constants';
 import { processNewsStory } from "./process_news_story";
 
-const { Client } = require("@notionhq/client")
+import { Client } from "@notionhq/client";
 
 
 

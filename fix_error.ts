@@ -3,8 +3,8 @@ import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { processSource } from "./process_source";
 import { walletAddress, TABLES, getConcatenatedPlainText, spaceId } from './src/constants';
-const { Client } = require("@notionhq/client")
-
+import { Client } from "@notionhq/client";
+import { type Op } from "@graphprotocol/grc-20";
 
 const ops: Array<Op> = [];
 let addOps;

@@ -1,4 +1,4 @@
-const { Client } = require("@notionhq/client")
+import { Client } from "@notionhq/client";
 import { walletAddress, TABLES, getConcatenatedPlainText } from './src/constants';
 
 // Initializing a client

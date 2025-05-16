@@ -1,14 +1,28 @@
 {
-	"name": "clone-space",
-	"module": "main.ts",
-	"type": "module",
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"dependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"@graphprotocol/grc-20": "^0.6.4",
-		"dotenv": "^16.4.7",
-		"viem": "^2.23.2"
-	}
+  "name": "clone-space",
+  "module": "main.ts",
+  "type": "module",
+  "scripts": {
+    "server:start": "vite build && node dist/server.js"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@graphprotocol/grc-20": "0.9.4",
+    "@notionhq/client": "^3.0.1",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "viem": "^2.23.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-node": "^5.0.1"
+  }
 }

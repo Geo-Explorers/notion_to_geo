@@ -3,10 +3,9 @@ import { TESTNET } from "./testnet";
 import { config } from "./config";
 import { privateKeyToAccount } from "viem/accounts";
 
-const account = privateKeyToAccount(config.pk as `0x${string}`);
-
-export const wallet = createWalletClient({
-	account: account,
-	chain: TESTNET,
-	transport: http(config.rpc, { batch: true }),
-});
+export const wallet = (privateKey?: `0x${string}`) =>
+  createWalletClient({
+    account: privateKeyToAccount(privateKey || (config.pk as `0x${string}`)),
+    chain: TESTNET,
+    transport: http(config.rpc, { batch: true }),
+  });

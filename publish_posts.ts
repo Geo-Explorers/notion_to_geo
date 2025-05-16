@@ -4,7 +4,7 @@ import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, getSpa
 import { processNewsStory } from "./process_news_story";
 import { processPost } from "./process_post";
 
-const { Client } = require("@notionhq/client");
+import { Client } from "@notionhq/client";
 
 function prioritizeItem(arr: string[], target: string): string[] {
     const index = arr.indexOf(target);

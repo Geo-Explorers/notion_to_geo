@@ -5,8 +5,9 @@ import { publish } from "./src/publish";
 import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS } from './src/constants';
 import { processPerson } from "./event_process_people";
 import { processProject } from "./event_process_project";
+import type { Op } from "@graphprotocol/grc-20";
 
-const { Client } = require("@notionhq/client");
+import { Client } from "@notionhq/client";
 
 async function main() {
     const ops: Array<Op> = [];

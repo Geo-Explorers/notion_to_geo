@@ -1,9 +1,9 @@
-import { Relation, SystemIds, Triple } from "@graphprotocol/grc-20";
+import { Relation, SystemIds, Triple, type Op } from "@graphprotocol/grc-20";
 import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { processSource } from "./process_source";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, buildGeoFilter, addSpace, filterOps, getSpaces, mainnetWalletAddress } from './src/constants';
-const { Client } = require("@notionhq/client")
+import { Client } from "@notionhq/client";
 
 import { searchEntities, searchEntitiesV1, searchDataBlocks, searchGetPublisherAvatar, searchEntity, searchUniquePublishers, searchArticles } from "./search_entities";
 

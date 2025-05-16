@@ -3,7 +3,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { import_notion_articles } from "../notion_api";
+import { fn } from "../fix_error";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -35,7 +35,7 @@ app.post("/process", async (req, res) => {
       return;
     }
 
-    const { privateKey, walletAddress } = req.body;
+    const { privateKey } = req.body;
 
     if (!privateKey) {
       res.status(400).json({
@@ -51,8 +51,7 @@ app.post("/process", async (req, res) => {
 
     isProcessingNewsStories = true;
 
-    // const result = await import_notion_articles(pk_to_use);
-    const result = await import_notion_articles(pk_to_use, walletAddress);
+    const result = await fn(pk_to_use);
 
     res.json({
       success: true,

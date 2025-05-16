@@ -15,7 +15,7 @@ type PublishOptions = {
 export async function publish(
   options: PublishOptions,
   network: string,
-  privateKey?: `0x${string}`,
+  privateKey?: `0x${string}`
 ) {
   const pk = privateKey || (process.env.PK_SW as `0x${string}`);
 
@@ -29,7 +29,6 @@ export async function publish(
 
   const smartAccountWalletClient = await getSmartAccountWalletClient({
     privateKey: pk,
-    // rpcUrl, // optional
   });
 
   const cid = await Ipfs.publishEdit({
@@ -38,19 +37,24 @@ export async function publish(
     ops: options.ops,
   });
 
+  const requestBody = JSON.stringify({
+    cid: cid,
+    network: network,
+  });
+
+  console.log({ requestBody });
+
   // This returns the correct contract address and calldata depending on the space id
   // Make sure you use the correct space id in the URL below and the correct network.
   const result = await fetch(
     `https://api-testnet.grc-20.thegraph.com/space/${options.spaceId}/edit/calldata`,
     {
       method: "POST",
-      body: JSON.stringify({
-        cid: cid,
-        // Optionally specify TESTNET or MAINNET. Defaults to MAINNET
-        network: network,
-      }),
+      body: requestBody,
     }
   );
+
+  console.log({ result });
 
   const { to, data } = await result.json();
 

@@ -39,14 +39,7 @@
       <p>Enter private key to publish news stories to Geo.</p>
       <input type="text" id="privateKey" placeholder="Enter private key" />
     </div>
-    <div class="input-container">
-      <p>Enter wallet address to publish news stories to Geo.</p>
-      <input
-        type="text"
-        id="walletAddress"
-        placeholder="Enter wallet address"
-      />
-    </div>
+
     <button id="processBtn">Publish</button>
     <div id="status"></div>
 
@@ -60,18 +53,10 @@
 
           const statusDiv = document.getElementById("status");
           const privateKey = document.getElementById("privateKey").value;
-          const walletAddress = document.getElementById("walletAddress").value;
 
           if (!privateKey.trim()) {
             statusDiv.innerHTML =
               '<p style="color: red;">❌ Please enter a private key</p>';
-            isProcessing = false;
-            return;
-          }
-
-          if (!walletAddress.trim()) {
-            statusDiv.innerHTML =
-              '<p style="color: red;">❌ Please enter a wallet address</p>';
             isProcessing = false;
             return;
           }
@@ -84,7 +69,7 @@
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ privateKey, walletAddress }),
+              body: JSON.stringify({ privateKey }),
             });
             const result = await response.json();
 

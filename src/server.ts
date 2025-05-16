@@ -77,7 +77,7 @@ app.post("/process", async (req, res) => {
 });
 
 let isRemovingDuplicates = false;
-app.post("/process", async (req, res) => {
+app.post("/remove_duplicates", async (req, res) => {
   try {
     if (isRemovingDuplicates) {
       res.status(429).json({
@@ -88,7 +88,7 @@ app.post("/process", async (req, res) => {
       return;
     }
 
-    const { privateKey, walletAddress, entity_to_keep, duplicates} = req.body;
+    const { privateKey, walletAddress, entity_to_keep, duplicates } = req.body;
 
     if (!privateKey) {
       res.status(400).json({
@@ -102,10 +102,15 @@ app.post("/process", async (req, res) => {
       ? privateKey
       : `0x${privateKey}`;
 
-      isRemovingDuplicates = true;
+    isRemovingDuplicates = true;
 
     // const result = await import_notion_articles(pk_to_use);
-    const result = await delete_duplicates(pk_to_use, walletAddress, entity_to_keep, duplicates);
+    const result = await delete_duplicates(
+      pk_to_use,
+      walletAddress,
+      entity_to_keep,
+      duplicates
+    );
 
     res.json({
       success: true,

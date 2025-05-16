@@ -26,21 +26,32 @@
       .input-container {
         margin-bottom: 20px;
       }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+      }
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
     </style>
   </head>
   <body>
     <h1>Remove duplicates on Geo</h1>
     <p>This is a tool to remove duplicate entities on Geo.</p>
     <div class="input-container">
-      <p>Enter private key to publish news stories to Geo. Get private key at https://www.geobrowser.io/export-wallet</p>
-      <input 
-        type="text" 
-        id="privateKey" 
-        placeholder="Enter private key"
-      />
+      <p>
+        Enter private key to publish news stories to Geo. Get private key at
+        https://www.geobrowser.io/export-wallet
+      </p>
+      <input type="text" id="privateKey" placeholder="Enter private key" />
     </div>
     <div class="input-container">
-      <p>Enter wallet address for your Geo account (from your personal space page in property Account).</p>
+      <p>
+        Enter wallet address for your Geo account (from your personal space page
+        in property Account).
+      </p>
       <input
         type="text"
         id="walletAddress"
@@ -48,20 +59,22 @@
       />
     </div>
     <div class="input-container">
-        <p>Enter the Geo ID for the entity you would like to keep</p>
-        <input
-            type="text"
-            id="entity_to_keep"
-            placeholder="Enter Geo ID for entity to keep"
-        />
+      <p>Enter the Geo ID for the entity you would like to keep</p>
+      <input
+        type="text"
+        id="entity_to_keep"
+        placeholder="Enter Geo ID for entity to keep"
+      />
     </div>
     <div class="input-container">
-        <p>Enter comma seperated list of Geo IDs for duplicate entities (e.g. Entity_ID_1, Entity_ID_2, ..., Entity_ID_LAST)</p>
-        <input
-            type="text"
-            id="duplicates"
-            placeholder="Enter comma seperated list of Geo IDs for any duplicate entities"
-        />
+      <p>
+        Enter comma seperated list of Geo IDs for duplicate entities (e.g.
+        Entity_ID_1, Entity_ID_2, ..., Entity_ID_LAST)
+      </p>
+      <textarea
+        id="duplicates"
+        placeholder="Enter comma seperated list of Geo IDs for any duplicate entities"
+      ></textarea>
     </div>
     <button id="processBtn">Publish</button>
     <div id="status"></div>
@@ -77,8 +90,16 @@
           const statusDiv = document.getElementById("status");
           const privateKey = document.getElementById("privateKey").value;
           const walletAddress = document.getElementById("walletAddress").value;
-          const entity_to_keep = document.getElementById("entity_to_keep").value;
+          const entity_to_keep =
+            document.getElementById("entity_to_keep").value;
           const duplicates = document.getElementById("duplicates").value;
+
+          console.log({
+            privateKey,
+            walletAddress,
+            entity_to_keep,
+            duplicates,
+          });
 
           if (!privateKey.trim()) {
             statusDiv.innerHTML =
@@ -116,7 +137,12 @@
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ privateKey, walletAddress, entity_to_keep, duplicates }),
+              body: JSON.stringify({
+                privateKey,
+                walletAddress,
+                entity_to_keep,
+                duplicates,
+              }),
             });
             const result = await response.json();
 

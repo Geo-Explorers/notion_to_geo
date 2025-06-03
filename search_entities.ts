@@ -164,8 +164,12 @@ export async function searchEntities(space: string, property: string, searchText
                 }
                 ) {
                 nodes {
-                    id
-                    name
+                    currentVersion {
+                        version {
+                            name
+                            id
+                        }
+                    }
                 }
                 }
             }
@@ -203,8 +207,12 @@ export async function searchEntities(space: string, property: string, searchText
                 }
                 ) {
                 nodes {
-                    id
-                    name
+                    currentVersion {
+                        version {
+                            name
+                            id
+                        }
+                    }
                 }
                 }
             }
@@ -220,7 +228,7 @@ export async function searchEntities(space: string, property: string, searchText
     const data = await fetchWithRetry(query, variables);
     
     if (data?.data?.entities?.nodes.length == 1) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
-        return data?.data?.entities?.nodes?.[0]?.id;
+        return data?.data?.entities?.nodes?.[0]?.currentVersion?.version?.id;
     } else {
         return null
     }

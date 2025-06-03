@@ -1,6 +1,6 @@
 import { Id, Ipfs, SystemIds, Relation, Triple, DataBlock, Position, PositionRange, Graph } from "@graphprotocol/grc-20";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation, buildGeoFilter, createQueryDataBlock, addSpace } from './src/constants';
-import { hasBeenEdited, normalizeUrl, searchArticles, searchEntities, searchEntity, searchOps } from "./search_entities";
+import { cleanText, hasBeenEdited, normalizeUrl, searchArticles, searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processTopic } from "./process_topic";
 import { INITIAL_RELATION_INDEX_VALUE } from "@graphprotocol/grc-20/constants";
 
@@ -19,7 +19,7 @@ export async function processProject(currentOps, projectId: string, notion: any,
     const page = await notion.pages.retrieve({ page_id: projectId });
     
     //Name
-    const name = getConcatenatedPlainText(page.properties["Name"]?.title);
+    const name = cleanText(getConcatenatedPlainText(page.properties["Name"]?.title));
     //console.log("Project page:", page.properties["Name"]);
     console.log("Project name:", name);
 

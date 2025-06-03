@@ -3,7 +3,7 @@ import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { walletAddress, TABLES, getConcatenatedPlainText, GEO_IDS } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps } from "./search_entities";
+import { cleanText, searchEntities, searchOps } from "./search_entities";
 
 export async function processPublisher(publisherId: string, notion: any): Promise<geoId> {
 
@@ -14,7 +14,7 @@ export async function processPublisher(publisherId: string, notion: any): Promis
     const page = await notion.pages.retrieve({ page_id: publisherId });
     
     //Name
-    const name = getConcatenatedPlainText(page.properties["Name"]?.title);
+    const name = cleanText(getConcatenatedPlainText(page.properties["Name"]?.title));
     console.log("Publisher name:", name);
     
     if (geoId = await searchEntities(GEO_IDS.cryptoSpaceId, SystemIds.NAME_PROPERTY, name, GEO_IDS.publisherTypeId)) { //Search graphDB for web url

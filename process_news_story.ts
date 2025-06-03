@@ -3,7 +3,7 @@ import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import {TABLES, getConcatenatedPlainText, GEO_IDS, getWeekNumber, processNewTriple, processNewRelation, addSpace } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps, searchNewsStory, searchEntity, hasBeenEdited } from "./search_entities";
+import { searchEntities, searchOps, searchNewsStory, searchEntity, hasBeenEdited, cleanText } from "./search_entities";
 import { processPerson } from "./process_person";
 import { processProject } from "./process_project";
 import { processTopic } from "./process_topic";
@@ -29,7 +29,7 @@ export async function processNewsStory(currentOps: Array<Op>, storyId: string, n
     const page = await notion.pages.retrieve({ page_id: storyId });
     
     //Name
-    const name = getConcatenatedPlainText(page.properties["Name"]?.title);
+    const name = cleanText(getConcatenatedPlainText(page.properties["Name"]?.title));
     console.log("News Story name:", name);
 
     //Description

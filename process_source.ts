@@ -3,7 +3,7 @@ import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, buildGeoFilter, createQueryDataBlock, processNewTriple, processNewRelation, addSpace } from './src/constants';
 import { format, parse } from 'date-fns';
-import { searchEntities, searchOps, searchGetPublisherAvatar, searchEntity, normalizeUrl, hasBeenEdited, searchOpsForPublisherAvatar } from "./search_entities";
+import { searchEntities, searchOps, searchGetPublisherAvatar, searchEntity, normalizeUrl, hasBeenEdited, searchOpsForPublisherAvatar, cleanText } from "./search_entities";
 import { processPerson } from "./process_person";
 import { processPublisher } from "./process_publisher";
 import { processProject } from "./process_project";
@@ -26,7 +26,7 @@ export async function processSource(currentOps: Array<Op>, sourceId: string, not
     const page = await notion.pages.retrieve({ page_id: sourceId });
     
     //Name
-    const name = getConcatenatedPlainText(page.properties["Name"]?.title);
+    const name = cleanText(getConcatenatedPlainText(page.properties["Name"]?.title));
     //console.log("Source name:", name);
 
     //Description

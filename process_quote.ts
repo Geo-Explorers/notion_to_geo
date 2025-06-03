@@ -3,7 +3,7 @@ import { deploySpace } from "./src/deploy-space";
 import { publish } from "./src/publish";
 import { TABLES, getConcatenatedPlainText, GEO_IDS, processNewTriple, processNewRelation, addSpace } from './src/constants';
 import { format, parse } from 'date-fns';
-import { hasBeenEdited, searchEntities, searchEntity, searchOps } from "./search_entities";
+import { cleanText, hasBeenEdited, searchEntities, searchEntity, searchOps } from "./search_entities";
 import { processSource } from "./process_source";
 import { processPerson } from "./process_person";
 import { processProject } from "./process_project";
@@ -25,7 +25,7 @@ export async function processQuote(currentOps: Array<Op>, quoteId: string, notio
     const page = await notion.pages.retrieve({ page_id: quoteId });
     
     //Name
-    const name = getConcatenatedPlainText(page.properties["Name"]?.title);
+    const name = cleanText(getConcatenatedPlainText(page.properties["Name"]?.title));
     console.log("Quote name:", name);
     
     if (geoId = await searchOps(currentOps, SystemIds.NAME_PROPERTY, "TEXT", name, GEO_IDS.quoteTypeId)) { //Search current ops for web url

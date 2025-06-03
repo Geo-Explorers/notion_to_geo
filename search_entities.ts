@@ -107,13 +107,20 @@ export async function hasBeenEdited(ops: Array<Ops>, entityId: string): Promise<
     }
 }
 
+export function cleanText(input: string): string {
+  // Remove invisible/control characters from the start and end
+  return input
+    .replace(/^[^\P{C}\P{Z}\S]+|[^\P{C}\P{Z}\S]+$/gu, '') // Strip non-printing characters at edges
+    .trim(); // Also trim standard whitespace
+}
+
 export async function searchOpsV1(ops: Array<Ops>, property: string, propType: string, searchText: string) {
     
     const match = ops.find(op =>
         op.type === "SET_TRIPLE" &&
         op.triple.attribute === property &&
         op.triple.value?.type === propType &&
-        op.triple.value?.value === searchText
+        op.triple.value?.value === cleanText(searchText)
     );
 
     if (match) {
@@ -140,9 +147,53 @@ export async function searchEntities(space: string, property: string, searchText
                 $typeId: String!
                 $typesPropertyId: String!
             ) {
-                entities(
-                filter: {
-                    currentVersion: {
+                currentVersions(
+                    filter: {
+                        version: {
+                            versionSpaces: {
+                                some: { spaceId: { equalTo: $space } }
+                            }
+                            triples: {
+                                some: {
+                                    attributeId: { equalTo: $property }
+                                    textValue: { equalToInsensitive: $searchText }
+                                }
+                            }
+                            relationsByFromVersionId: {
+                                some: {
+                                    toEntityId: { equalTo: $typeId }
+                                    typeOfId: { equalTo: $typesPropertyId }
+                                }
+                            }
+                        }
+                    }
+                ) {
+                    nodes {
+                        entityId
+                        version {
+                            name
+                        }
+                    }
+                }
+            }
+        `;
+
+        variables = {
+            space: space,
+            property: property,
+            searchText: cleanText(searchText),
+            typeId: typeId,
+            typesPropertyId: SystemIds.TYPES_PROPERTY
+        };
+    } else {
+        query = `
+            query GetEntities(
+                $space: String!
+                $property: String!
+                $searchText: String!
+            ) {
+                currentVersions(
+                    filter: {
                         version: {
                             versionSpaces: {
                                 some: { spaceId: { equalTo: $space } }
@@ -155,22 +206,13 @@ export async function searchEntities(space: string, property: string, searchText
                             }
                         }
                     }
-                    relationsByFromEntityId: {
-                        some: {
-                            toEntityId: { equalTo: $typeId }
-                            typeOfId: { equalTo: $typesPropertyId }
-                        }
-                    }
-                }
                 ) {
-                nodes {
-                    currentVersion {
+                    nodes {
+                        entityId
                         version {
                             name
-                            entityId
                         }
                     }
-                }
                 }
             }
         `;
@@ -178,57 +220,14 @@ export async function searchEntities(space: string, property: string, searchText
         variables = {
             space: space,
             property: property,
-            searchText: searchText,
-            typeId: typeId,
-            typesPropertyId: SystemIds.TYPES_PROPERTY
-        };
-    } else {
-        query = `
-            query GetEntities(
-                $space: String!
-                $property: String!
-                $searchText: String!
-            ) {
-                entities(
-                filter: {
-                    currentVersion: {
-                        version: {
-                            versionSpaces: {
-                            some: { spaceId: { equalTo: $space } }
-                            }
-                            triples: {
-                            some: {
-                                attributeId: { equalTo: $property }
-                                textValue: { equalToInsensitive: $searchText }
-                            }
-                            }
-                        }
-                    }
-                }
-                ) {
-                nodes {
-                    currentVersion {
-                        version {
-                            name
-                            entityId
-                        }
-                    }
-                }
-                }
-            }
-        `;
-
-        variables = {
-            space: space,
-            property: property,
-            searchText: searchText,
+            searchText: cleanText(searchText),
         };
     }
 
     const data = await fetchWithRetry(query, variables);
     
-    if (data?.data?.entities?.nodes.length == 1) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
-        return data?.data?.entities?.nodes?.[0]?.currentVersion?.version?.entityId;
+    if (data?.data?.currentVersions?.nodes.length == 1) { //NOTE NEED TO HANDLE IF THERE ARE MANY RESULTS
+        return data?.data?.currentVersions?.nodes?.[0]?.entityId;
     } else {
         return null
     }

@@ -26,9 +26,6 @@ interface CreateRecordsResponse {
 const TEABLE_CONFIG = {
   API_KEY: process.env.TEABLE_API_KEY,
   API_URL: process.env.TEABLE_API_URL,
-  BASE_ID: process.env.TEABLE_BASE_ID,
-  PASSWORD: process.env.TEABLE_PASSWORD,
-  USER: process.env.TEABLE_USER,
 };
 
 export class TeableClient {
